@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import ecourse.model.CourseRepository;
 import ecourse.model.Enrollments;
 import ecourse.model.EnrollmentsRepository;
 import ecourse.model.UserRepository;
@@ -23,6 +24,7 @@ public class EnrollmentsController {
     
     @Autowired EnrollmentsRepository enrRepository;
     @Autowired UserRepository userRes;
+    @Autowired CourseRepository course;
     @GetMapping("/admin/enrollments")
     public String index(Model model) {
         model.addAttribute("list",enrRepository.findAll());
@@ -32,6 +34,7 @@ public class EnrollmentsController {
     @GetMapping("/admin/enrollments/add")
     public String add(Model model) {
         model.addAttribute("userList", userRes.findAll());
+        model.addAttribute("courseList", course.findAll());
         return "/admin/enrollments/add";
     }
     @PostMapping("/admin/enrollments/add")

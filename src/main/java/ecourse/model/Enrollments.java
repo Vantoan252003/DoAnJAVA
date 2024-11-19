@@ -15,12 +15,16 @@ public class Enrollments {
     @Id
     @Column(name ="enrollment_id")
     private short enrollId;
+
     @Column(name = "user_id")
     private short userId;
+
     @Column (name ="course_id")
     private short courseId;
+
     @Column(name ="enrolled_at")
     private Date enrolledDate;
+    
     public short getEnrollId() {
         return enrollId;
     }
