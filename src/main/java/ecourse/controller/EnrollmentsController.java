@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import ecourse.model.Enrollments;
 import ecourse.model.EnrollmentsRepository;
+import ecourse.model.UserRepository;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class EnrollmentsController {
     
     @Autowired EnrollmentsRepository enrRepository;
+    @Autowired UserRepository userRes;
     @GetMapping("/admin/enrollments")
     public String index(Model model) {
         model.addAttribute("list",enrRepository.findAll());
@@ -27,7 +30,8 @@ public class EnrollmentsController {
     }
     //Thêm dữ liệu
     @GetMapping("/admin/enrollments/add")
-    public String add() {
+    public String add(Model model) {
+        model.addAttribute("userList", userRes.findAll());
         return "/admin/enrollments/add";
     }
     @PostMapping("/admin/enrollments/add")
