@@ -12,13 +12,13 @@
             <div class="form-group">
                 <label for="description">ID Người dùng</label>
                 <select name="userId" class="form-control">
-                    <option th:each="o: ${userList}" th:value="${o.userId}" th:text="${o.username + ' (ID=' + o.userId +')'}"></option>
+                    <option th:each="o: ${userList}" th:value="${o.userId}" th:text="${o.username +' (ID =' + o.userId +')'}"></option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="description">ID khóa học</label>
                 <select name="courseId" class="form-control">
-                    <option th:each="list: ${courseList}" th:value="${list.courseId}" th:text="${list.title + ' (ID)'}"></option>
+                    <option th:each="list: ${courseList}" th:value="${list.courseId}" th:text="${list.title + ' (ID=' + list.courseId+ ')'}"></option>
                 </select>
             </div>
             <div class="form-group">
