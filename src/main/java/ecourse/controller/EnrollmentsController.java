@@ -47,6 +47,8 @@ public class EnrollmentsController {
     public String edit(@PathVariable("enrollId") short enrollId, Model model) {
     Enrollments enroll = enrRepository.findById(enrollId).orElse(null);
     model.addAttribute("enroll", enroll);
+    model.addAttribute("userList", userRes.findAll());
+    model.addAttribute("courseList", course.findAll());
     return "admin/enrollments/edit";
     }
     @PostMapping("/admin/enrollments/edit/{enrollId}")

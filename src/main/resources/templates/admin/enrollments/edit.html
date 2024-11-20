@@ -10,16 +10,16 @@
         <h2>Chỉnh sửa phiếu</h2>
         <form method="post">
             <div class="form-group">
-                <label for="enrollId">ID phiếu</label>
-                <input type="number" class="form-control" name="enrollId" th:value="${enroll.enrollId}" placeholder="Nhập ID" required>
+                <label for="description">ID Người dùng</label>
+                <select name="userId" class="form-control">
+                    <option th:each="o: ${userList}" th:value="${o.userId}" th:text="${o.username + ' (ID=' + o.userId +')'}"></option>
+                </select>
             </div>
             <div class="form-group">
-                <label for="userId">ID người dùng</label>
-                <input type="number" class="form-control" name="userId" th:value="${enroll.userId}" placeholder="Nhập ID" required>
-            </div>
-            <div class="form-group">
-                <label for="courseId">ID khóa học</label>
-                <input type="number" class="form-control" name="courseId" th:value="${enroll.courseId}" placeholder="Nhập khóa học" required>
+                <label for="description">ID khóa học</label>
+                <select name="courseId" class="form-control">
+                    <option th:each="list: ${courseList}" th:value="${list.courseId}" th:text="${list.title + ' (ID)'}"></option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="enrolledDate">Ngày tạo</label>
