@@ -25,14 +25,14 @@ public class Course {
     private Date createdAt;
     @Column(name = "description")
     private String description;
-    // @OneToMany(mappedBy = "course")
-    // private List<Enrollments> enroll;
-    // public List<Enrollments> getEnoll(){
-    //     return enroll;
-    // }
-    // public void setEnroll(List <Enrollments> enroll){
-    //     this.enroll = enroll;
-    // }
+    @OneToMany(mappedBy = "Course")
+    private List<Enrollments> enroll;
+    public List<Enrollments> getEroll(){
+        return enroll;
+    }
+    public void setEnroll(List <Enrollments> enroll){
+        this.enroll = enroll;
+    }
     @Column(name = "image_url")
     private String image_url;
     @Column(name ="price")
