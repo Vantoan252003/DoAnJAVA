@@ -8,22 +8,22 @@
 <body>
     <div class="container mt-5">
         <h2>Chỉnh sửa phiếu</h2>
-        <form method="post">
+        <form method="post" th:object="${enroll}">
             <div class="form-group">
                 <label for="description">ID Người dùng</label>
-                <select name="clazz.userId"  class="form-control">
+                <select th:field="*{clazz.userId}"  class="form-control">
                     <option th:each="o: ${userList}" th:value="${o.userId}" th:text="${o.username +' (ID =' + o.userId +')'}"></option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="description">ID khóa học</label>
-                <select name="courseId" class="form-control">
+                <select th:field="*{courseId}" class="form-control">
                     <option th:each="list: ${courseList}" th:value="${list.courseId}" th:text="${list.title + ' (ID=' + list.courseId+ ')'}"></option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="enrolledDate">Ngày tạo</label>
-                <input type="Date" class="form-control" name="enrolledDate" th:value="${enroll.enrolledDate}" required>
+                <input type="Date" class="form-control" th:field="*{enrolledDate}" required>
             </div>
             <button type="submit" class="btn btn-success">Lưu</button>
             <a href="/admin/enrollments" class="btn btn-secondary">Hủy</a>

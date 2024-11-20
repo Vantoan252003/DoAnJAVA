@@ -3,7 +3,6 @@ package ecourse.model;
 
 import java.sql.Date;
 
-import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

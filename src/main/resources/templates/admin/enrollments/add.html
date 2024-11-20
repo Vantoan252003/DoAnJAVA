@@ -12,7 +12,7 @@
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="description">ID Người dùng</label>
-                <select name="userId" class="form-control">
+                <select name="clazz.userId" class="form-control">
                     <option th:each="o: ${userList}" th:value="${o.userId}" th:text="${o.username}"></option>
                 </select>
             </div>
