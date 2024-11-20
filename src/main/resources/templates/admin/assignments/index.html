@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Khóa học</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Quản lý bài học</h2>
+        <a href="/admin/assignments/add" class="btn btn-success">Thêm bài học</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID bài tập</th>
+                    <th>ID bài học</th>
+                    <th>Tiêu đề</th>
+                    <th>Miêu tả</th>
+                    <th>Ngày hết hạn</th>
+                    <th>Ngày tạo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="o : ${list}">
+                    <td th:text="${o.assignmentId}"></td>
+                    <td th:text="${o.lessonId}"></td>
+                    <td th:text="${o.title}"></td>
+                    <td th:text="${o.description}"></td>
+                    <td th:text="${o.dueDate}"></td>
+                    <td th:text="${o.createdAt}"></td>
+                    <td>
+                        <!--><a th:href="@{/admin/course/edit/{courseId}(courseId=${o.courseId})}" class="btn btn-primary btn-sm">Sửa</a>
+                        <a th:href="@{/admin/course/delete/{courseId}(courseId=${o.courseId})}" class="btn btn-danger btn-sm" onclick="return confirm('Có chắc muốn xóa không ní ?')">Xóa</a>-->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
