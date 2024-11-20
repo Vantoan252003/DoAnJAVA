@@ -55,7 +55,7 @@ public class Enrollments {
     // }
     // public void setUserId(short userId) {
     //     this.userId = userId;
-    // }
+    // } a little comment here
     // public short getCourseId() {
     //     return courseId;
     // }
