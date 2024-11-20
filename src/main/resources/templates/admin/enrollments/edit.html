@@ -15,11 +15,15 @@
             </div>
             <div class="form-group">
                 <label for="userId">ID người dùng</label>
-                <input type="number" class="form-control" name="userId" th:value="${enroll.userId}" placeholder="Nhập ID" required>
+                <select name="userId" class="form-control">
+                    <option th:each="o: ${userList}" th:value="${o.userId}" th:text="${o.username}"></option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="courseId">ID khóa học</label>
-                <input type="number" class="form-control" name="courseId" th:value="${enroll.courseId}" placeholder="Nhập khóa học" required>
+                <select name="courseId" class="form-control">
+                    <option th:each="o: ${courseList}" th:value="${o.courseId}" th:text="${o.courseId}"></option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="enrolledDate">Ngày tạo</label>
