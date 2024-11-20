@@ -1,6 +1,7 @@
 package ecourse.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Transient;
 
 @Entity(name = "courses")
@@ -23,7 +25,14 @@ public class Course {
     private Date createdAt;
     @Column(name = "description")
     private String description;
-   
+    // @OneToMany(mappedBy = "course")
+    // private List<Enrollments> enroll;
+    // public List<Enrollments> getEnoll(){
+    //     return enroll;
+    // }
+    // public void setEnroll(List <Enrollments> enroll){
+    //     this.enroll = enroll;
+    // }
     @Column(name = "image_url")
     private String image_url;
     @Column(name ="price")
