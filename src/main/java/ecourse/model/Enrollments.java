@@ -3,7 +3,6 @@ package ecourse.model;
 
 import java.sql.Date;
 
-import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,21 +27,20 @@ public class Enrollments {
     public UserClass getClazz() {
         return Clazz;
     }
-    
+ 
     public void setClazz(UserClass Clazz) {
         this.Clazz = Clazz;
     }
-    @Column (name ="course_id")
-    private short courseId;
-    // @ManyToOne
-    // @JoinColumn(name ="course_id")
-    // private Course course;
-    // public Course getCourse(){
-    //     return course;
-    // }
-    // public void setCourse(Course course){
-    //     this.course = course;
-    // }
+    @ManyToOne
+    @JoinColumn(name ="course_id")
+    private Course Course;
+    public Course getCourse() {
+        return Course;
+    }
+    public void setCourse(Course Course) {
+        this.Course = Course;
+    }
+
     @Column(name ="enrolled_at")
     private Date enrolledDate;
     
@@ -57,13 +55,13 @@ public class Enrollments {
     // }
     // public void setUserId(short userId) {
     //     this.userId = userId;
+    // } a little comment here
+    // public short getCourseId() {
+    //     return courseId;
     // }
-    public short getCourseId() {
-        return courseId;
-    }
-    public void setCourseId(short courseId) {
-        this.courseId = courseId;
-    }
+    // public void setCourseId(short courseId) {
+    //     this.courseId = courseId;
+    // }
     public Date getEnrolledDate() {
         return enrolledDate;
     }
