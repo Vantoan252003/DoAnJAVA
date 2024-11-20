@@ -27,7 +27,7 @@
                     <td th:text="${enroll.enrolledDate}"></td>
                     <td>
                         <a th:href="@{/admin/enrollments/edit/{enrollId}(enrollId=${enroll.enrollId})}" class="btn btn-primary btn-sm">Sửa</a>
-                        <!-- <a th:href="@{/admin/user/delete/{userId}(userId=${user.userId})}" class="btn btn-danger btn-sm" onclick="return confirm('Có chắc muốn xóa không ní ?')">Xóa</a> -->
+                        <a th:href="@{/admin/enrollments/delete/{enrollId}(enrollId=${enroll.enrollId})}" class="btn btn-danger btn-sm" onclick="return confirm('Có chắc muốn xóa không ní ?')">Xóa</a>
                     </td>
                 </tr>
             </tbody>

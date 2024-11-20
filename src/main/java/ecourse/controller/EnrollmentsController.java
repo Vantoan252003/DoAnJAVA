@@ -57,6 +57,11 @@ public class EnrollmentsController {
         enrRepository.save(post);
         return "redirect:/admin/enrollments";
     }
-    
+    //Xóa
+    @GetMapping("/admin/enrollments/delete/{enrollId}")
+    public String delete(@PathVariable("enrollId") short enrollId) {
+        enrRepository.deleteById(enrollId);
+        return "redirect:/admin/enrollments";
+    }
     
 }
