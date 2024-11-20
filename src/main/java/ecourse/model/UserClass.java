@@ -1,12 +1,15 @@
 package ecourse.model;
 
 import java.sql.Date;
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Transient;
 
 @Entity(name = "users")
@@ -30,7 +33,14 @@ public class UserClass {
 
     @Column(name = "user_image_url")
     private String userImageUrl;
-
+    @OneToMany(mappedBy = "Clazz")
+    private List<Enrollments> enroll;
+    public List<Enrollments> getEnoll(){
+        return enroll;
+    }
+    public void setEnroll(List <Enrollments> enroll){
+        this.enroll = enroll;
+    }
     @Transient
     private MultipartFile userImage;
 

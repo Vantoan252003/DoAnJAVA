@@ -22,7 +22,7 @@
             <tbody>
                 <tr th:each="enroll : ${list}">
                     <td th:text="${enroll.enrollId}"></td>
-                    <td th:text="${enroll.userId}"></td>
+                    <td th:text="${enroll.Clazz.username}"></td>
                     <td th:text="${enroll.courseId}"></td>
                     <td th:text="${enroll.enrolledDate}"></td>
                     <td>

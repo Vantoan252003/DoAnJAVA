@@ -3,11 +3,15 @@ package ecourse.model;
 
 import java.sql.Date;
 
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity(name = "enrollments")
 public class Enrollments {
@@ -16,9 +20,18 @@ public class Enrollments {
     @Column(name ="enrollment_id")
     private short enrollId;
 
-    @Column(name = "user_id")
-    private short userId;
-
+    // @Column(name = "user_id")
+    // private short userId;
+    @ManyToOne
+    @JoinColumn(name ="user_id")
+    private UserClass Clazz;
+    public UserClass getClazz() {
+        return Clazz;
+    }
+ 
+    public void setClazz(UserClass Clazz) {
+        this.Clazz = Clazz;
+    }
     @Column (name ="course_id")
     private short courseId;
 
@@ -31,12 +44,12 @@ public class Enrollments {
     public void setEnrollId(short enrollId) {
         this.enrollId = enrollId;
     }
-    public short getUserId() {
-        return userId;
-    }
-    public void setUserId(short userId) {
-        this.userId = userId;
-    }
+    // public short getUserId() {
+    //     return userId;
+    // }
+    // public void setUserId(short userId) {
+    //     this.userId = userId;
+    // }
     public short getCourseId() {
         return courseId;
     }
