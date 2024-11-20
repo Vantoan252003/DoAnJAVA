@@ -1,5 +1,8 @@
 package ecourse.model;
 
-public class LessonsRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface LessonsRepository extends CrudRepository<Lessons, Short> {
+    
 
 }
