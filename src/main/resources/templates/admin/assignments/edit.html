@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chỉnh sửa bài học</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Chỉnh sửa bài học</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Miêu tả</label>
+                <textarea class="form-control" name="title" rows="3" required th:text="${assignments.title}"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="description">Miêu tả</label>
+                <textarea class="form-control" name="description" rows="3" required th:text="${assignments.description}"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="dueDate">Ngày hết hạn</label>
+                <input type="date" class="form-control" name="dueDate" th:value="${assignments.dueDate}" required>
+            </div>
+            <div class="form-group">
+                <label for="createdAt">Ngày tạo</label>
+                <input type="date" class="form-control" name="createdAt" th:value="${assignments.createdAt}" required>
+            </div>
+            <button type="submit" class="btn btn-success">Lưu</button>
+            <a href="/admin/assignments" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
