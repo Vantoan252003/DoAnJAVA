@@ -9,4 +9,8 @@ public class LayoutController {
     public String course() {
         return "home/course";
     }
+    @GetMapping("/home/contact")
+    public String contact() {
+        return "home/contact";
+    }
 }
