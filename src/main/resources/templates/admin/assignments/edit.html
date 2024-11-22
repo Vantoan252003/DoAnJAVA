@@ -10,7 +10,15 @@
         <h2>Chỉnh sửa bài học</h2>
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="title">Miêu tả</label>
+                <label for="assignmentId">ID bài tập</label>
+                <input type="number" class="form-control" name="assignmentId" th:value="${assignments.assignmentId}" required>
+            </div>
+            <div class="form-group">
+                <label for="lessonId">ID bài học</label>
+                <input type="number" class="form-control" name="lessonId" th:value="${assignments.lessonId}" required>
+            </div>
+            <div class="form-group">
+                <label for="title">Tiêu đề</label>
                 <textarea class="form-control" name="title" rows="3" required th:text="${assignments.title}"></textarea>
             </div>
             <div class="form-group">
