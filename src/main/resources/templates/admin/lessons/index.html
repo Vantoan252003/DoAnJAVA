@@ -27,8 +27,8 @@
                     <td th:text="${o.title}"></td>
                     <td th:text="${o.content}"></td>
                     <td th:text="${o.createdAt}"></td>
-                    <!-- <td th:text="${o.videoUrl}"></td> -->
-                    <!-- cái video á, là url, chứ không phải là upload video lên phải làm sao -->
+                    <td th:text="${o.videoUrl != null ? o.videoUrl : 'Không có video'}"></td>
+                    <!--upload video lên phải làm sao -->
                     
                         <!--<a th:href="@{/admin/course/edit/{courseId}(courseId=${o.courseId})}" class="btn btn-primary btn-sm">Sửa</a>
                         <a th:href="@{/admin/course/delete/{courseId}(courseId=${o.courseId})}" class="btn btn-danger btn-sm" onclick="return confirm('Có chắc muốn xóa không ní ?')">Xóa</a>-->
