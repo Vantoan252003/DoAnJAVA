@@ -62,11 +62,11 @@ public class Lessons {
         this.content = content;
     }
 
-    public String getVideo_url() {
+    public String getVideoUrl() {
         return videoUrl;
     }
 
-    public void setVideo_url(String videoUrl) {
+    public void setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
     }
 
