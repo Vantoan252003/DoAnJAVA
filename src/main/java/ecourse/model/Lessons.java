@@ -25,7 +25,7 @@ public class Lessons {
     private String content;
 
     @Column(name = "video_url")
-    private String video;
+    private String videoUrl;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -63,11 +63,11 @@ public class Lessons {
     }
 
     public String getVideo_url() {
-        return video;
+        return videoUrl;
     }
 
-    public void setVideo_url(String video) {
-        this.video = video;
+    public void setVideo_url(String videoUrl) {
+        this.videoUrl = videoUrl;
     }
 
     public Date getCreatedAt() {
