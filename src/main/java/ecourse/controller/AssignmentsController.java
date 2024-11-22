@@ -28,6 +28,6 @@ public class AssignmentsController {
     @PostMapping("/admin/assignments/add")
     public String add(@ModelAttribute Assignments assignments){
         assignmentsRepository.save(assignments);
-        return "redirect:/admin/course";
+        return "redirect:/admin/assignments";
     }
 }
