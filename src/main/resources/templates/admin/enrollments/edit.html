@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="/admin/layoutAdmin">
 <head>
     <meta charset="UTF-8">
     <title>Chỉnh sửa phiếu</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <div layout:fragment="content">
     <div class="container mt-5">
         <h2>Chỉnh sửa phiếu</h2>
         <form method="post" th:object="${enroll}">
@@ -29,6 +32,7 @@
             <a href="/admin/enrollments" class="btn btn-secondary">Hủy</a>
         </form>
     </div>
+</div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
