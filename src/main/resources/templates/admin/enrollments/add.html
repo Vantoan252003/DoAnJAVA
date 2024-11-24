@@ -12,16 +12,16 @@
     <div class="container mt-5">
         <h2>Thêm phiếu mới</h2>
 
-        <form method="post" enctype="multipart/form-data">
+        <form method="post">
             <div class="form-group">
                 <label for="description">ID Người dùng</label>
-                <select name="clazz.userId" class="form-control">
+                <select name="Clazz.userId" class="form-control">
                     <option th:each="o: ${userList}" th:value="${o.userId}" th:text="${o.username}"></option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="description">ID khóa học</label>
-                <select name="courseId" class="form-control">
+                <select name="Course.courseId" class="form-control">
                     <option th:each="list: ${courseList}" th:value="${list.courseId}" th:text="${list.title}"></option>
                 </select>
             </div>

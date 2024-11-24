@@ -19,14 +19,15 @@
                     <th>ID người dùng</th>
                     <th>ID khóa học</th>
                     <th>Ngày tạo</th>
+                    <th>Hành động</th>
                 
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="enroll : ${list}">
                     <td th:text="${enroll.enrollId}"></td>
-                    <td th:text="${enroll.clazz.username + ' (ID=' + enroll.Clazz.userId +')'}"></td>
-                    <td th:text="${enroll.Course.title + ' (ID=' + enroll.Course.courseId +')'}"></td>
+                    <td th:text="${enroll.Clazz.username + ' (ID=' + enroll.Clazz.userId +')'}"></td>
+                    <td th:text="${enroll.course.title + ' (ID=' + enroll.course.courseId +')'}"></td>
                     <td th:text="${enroll.enrolledDate}"></td>
                     <td>
                         <a th:href="@{/admin/enrollments/edit/{enrollId}(enrollId=${enroll.enrollId})}" class="btn btn-primary btn-sm">Sửa</a>

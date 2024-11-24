@@ -28,8 +28,6 @@ public class EnrollmentsController {
     @GetMapping("/admin/enrollments")
     public String index(Model model) {
         model.addAttribute("list",enrRepository.findAll());
-        model.addAttribute("userList", userRes.findAll());
-        model.addAttribute("courseList", course.findAll());
         return "admin/enrollments/index";
     }
     //Thêm dữ liệu

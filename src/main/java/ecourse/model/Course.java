@@ -25,14 +25,7 @@ public class Course {
     private Date createdAt;
     @Column(name = "description")
     private String description;
-    @OneToMany(mappedBy = "Course")
-    private List<Enrollments> enroll;
-    public List<Enrollments> getEroll(){
-        return enroll;
-    }
-    public void setEnroll(List <Enrollments> enroll){
-        this.enroll = enroll;
-    }
+    
     @Column(name = "image_url")
     private String image_url;
     @Column(name ="price")
@@ -41,6 +34,14 @@ public class Course {
     private String category;
     @Transient
     private MultipartFile imageFile;
+    @OneToMany(mappedBy = "Course")
+    private List<Enrollments> enrollM;
+    public List<Enrollments> getEroll(){
+        return enrollM;
+    }
+    public void setEnroll(List <Enrollments> enroll){
+        this.enrollM = enroll;
+    }
     public short getCourseId() {
         return courseId;
     }
