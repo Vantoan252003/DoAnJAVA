@@ -24,6 +24,11 @@ public class CourseService {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else {
+            Course existingCourse = courseRepository.findById(course.getCourseId()).orElse(null);
+            if (existingCourse != null) {
+                course.setImage_url(existingCourse.getImage_url());
+            }
         }
         courseRepository.save(course);
     }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="/admin/layoutAdmin">
+<head>
+    <meta charset="UTF-8">
+    <title>Chỉnh sửa bài học</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>3
+    <div layout:fragment="content">
+    <div class="container mt-5">
+        <h2>Chỉnh sửa bài học</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Tên khóa học</label>
+                <input type="text" class="form-control" name="title" th:value="${course.title}" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Miêu tả</label>
+                <textarea class="form-control" name="description" rows="3" required th:text="${course.description}"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="createdAt">Ngày tạo</label>
+                <input type="date" class="form-control" name="createdAt" th:value="${course.createdAt}" required>
+            </div>
+            <div class="form-group">
+                <label for="image_url">Ảnh</label>
+                <input type="file" class="form-control-file" name="imageFile">
+                <img th:src="'data:image/jpeg;base64,' + ${course.image_url}" alt="Course Image" class="img-thumbnail mt-2" style="max-width: 200px;">
+            </div>
+            <div class="form-group">
+                <label for="price">Giá</label>
+                <input type="number" class="form-control" name="price" th:value="${course.price}" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Thể loại</label>
+                <input type="text" class="form-control" name="category" th:value="${course.category}" required>
+            </div>
+            <button type="submit" class="btn btn-success">Lưu</button>
+            <a href="/admin/course" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

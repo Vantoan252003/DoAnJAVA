@@ -38,7 +38,7 @@
                     <td th:text="${o.category}"></td>
                     <td>
                         <a th:href="@{/admin/course/edit/{courseId}(courseId=${o.courseId})}" class="btn btn-primary btn-sm">Sửa</a>
-                        <a th:href="@{/admin/course/delete/{courseId}(courseId=${o.courseId})}" class="btn btn-danger btn-sm" onclick="return confirm('Có chắc muốn xóa không ní ?')">Xóa</a>
+                        <a th:href="@{/admin/course/delete/{courseId}(courseId=${o.courseId})}" class="btn btn-danger btn-sm" onclick="return confirm('Có chắc muốn xóa không ?')">Xóa</a>
                     </td>
                 </tr>
             </tbody>

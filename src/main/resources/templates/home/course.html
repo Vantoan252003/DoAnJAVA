@@ -24,6 +24,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/image-custom.css" rel="stylesheet">
 </head>
 
 <body>
@@ -138,110 +139,20 @@
                 <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">KHÓA HỌC</h5>
                 <h1>Các khóa bán chạy</h1>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
+            <div class="row" >
+                <div class="col-lg-4 col-md-6 mb-4" th:each="o :${list}">
                     <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="/img/course-1.jpg" alt="">
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 Học viên</small>
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>05h 30m</small>
-                            </div>
-                            <a class="h5" href="">Thiết kế web cho người mới nhập môn </a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.7 <small>(184)</small></h6>
-                                    <h5 class="m-0">$39</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="/img/course-2.jpg" alt="">
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>70 Học viên</small>
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>21h 30m</small>
-                            </div>
-                            <a class="h5" href="">Khóa học Marketing cơ bản</a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.9 <small>(80)</small></h6>
-                                    <h5 class="m-0">$28</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="/img/course-3.jpg" alt="">
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 Học viên</small>
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>10h 25m</small>
-                            </div>
-                            <a class="h5" href="">Khóa học sáng tạo nội dung (Content Writing)</a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.4 <small>(125)</small></h6>
-                                    <h5 class="m-0">$19</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="/img/course-4.jpg" alt="">
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>35 Học viên</small>
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>09h 32m</small>
-                            </div>
-                            <a class="h5" href="">Kỹ năng họp nhóm đỉnh cao</a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.4 <small>(198)</small></h6>
-                                    <h5 class="m-0">$29</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="/img/course-5.jpg" alt="">
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 Học viên</small>
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>06h 35m</small>
-                            </div>
-                            <a class="h5" href="">Thành thạo PowerPoint, Excel, Word</a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.9 <small>(190)</small></h6>
-                                    <h5 class="m-0">$99</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="/img/course-6.jpg" alt="">
+                        <img class="image-custom" th:src="'data:image/jpeg;base64,' + ${o.image_url}" alt="ảnh lỗi" >
                         <div class="bg-secondary p-4">
                             <div class="d-flex justify-content-between mb-3">
                                 <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 Học viên</small>
                                 <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
                             </div>
-                            <a class="h5" href="">Xây dựng và phát triển ứng dụng di động</a>
+                            <a class="h5" th:text="${o.title}"></a>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
                                     <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                    <h5 class="m-0">$99</h5>
+                                    <h5 class="m-0" th:text="${o.price} +'$'"></h5>
                                 </div>
                             </div>
                         </div>
