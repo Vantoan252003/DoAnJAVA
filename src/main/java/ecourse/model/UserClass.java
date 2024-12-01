@@ -1,17 +1,24 @@
 package ecourse.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
+
+
 
 import org.springframework.web.multipart.MultipartFile;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Transient;
-
+import lombok.Data;
+@Data
 @Entity(name = "users")
 public class UserClass {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +35,17 @@ public class UserClass {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at",nullable = true)
     private Date createdAt;
-
+    @Enumerated(EnumType.STRING) // Ánh xạ enum thành chuỗi (ADMIN, SUPERADMIN)
+    @Column(name = "role")
+    private Role role;
+    @Transient
+    private MultipartFile imageFile;
     @Column(name = "user_image_url")
     private String userImageUrl;
+    @Column(name = "fullname")
+    private String fullname;
     @OneToMany(mappedBy = "Clazz")
     private List<Enrollments> enroll;
     public List<Enrollments> getEnoll(){
@@ -40,6 +53,21 @@ public class UserClass {
     }
     public void setEnroll(List <Enrollments> enroll){
         this.enroll = enroll;
+    }
+    public MultipartFile getImageFile() {
+        return imageFile;
+    }
+    public void setImageFile(MultipartFile imageFile) {
+        this.imageFile = imageFile;
+    }
+    public Role getRole() {
+        return role;
+    }
+    public void setRole(Role role) {
+        this.role = role;
+    }
+    public List<Enrollments> getEnroll() {
+        return enroll;
     }
     @Transient
     private MultipartFile userImage;
@@ -96,8 +124,23 @@ public class UserClass {
     public MultipartFile getUserImage() {
         return userImage;
     }
-
     public void setUserImage(MultipartFile userImage) {
         this.userImage = userImage;
     }
+    public String getFullname() {
+        return fullname;
+    }
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+    @PrePersist
+    protected void onCreate() {
+        if (this.createdAt == null) {
+            this.createdAt = Date.valueOf(LocalDate.now());
+        }
+        if (this.role == null) {
+            this.role = Role.user; // Thiết lập giá trị mặc định cho role là USER
+        }
+    }
+  
 }

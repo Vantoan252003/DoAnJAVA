@@ -11,10 +11,14 @@
     <div layout:fragment="content">
     <div class="container mt-5">
         <h2>Chỉnh sửa người dùng</h2>
-        <form method="post">
-            <div class="form-group">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group" >
                 <label for="username">Tên người dùng</label>
                 <input type="text" class="form-control" name="username" th:value="${user.username}" placeholder="Nhập tên người dùng" required>
+            </div>
+            <div class="form-group">
+                <label for="fullName">Họ tên</label>
+                <input type="text" class="form-control" name="fullname" th:value="${user.fullname}" placeholder="Nhập họ tên" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -29,8 +33,19 @@
                 <input type="date" class="form-control" name="createdAt" th:value="${user.createdAt}" required>
             </div>
             <div class="form-group">
-                <label for="userImageUrl">Ảnh</label>
-                <input type="file" class="form-control-file" name="userImageUrl">
+                <label for="role">Vai trò</label>
+                <select name="role" class="form-control">
+                    <!-- Lặp qua tất cả các giá trị của enum Role -->
+                    <option th:each="role : ${roles}" 
+                            th:value="${role}" 
+                            th:text="${role}" 
+                            th:selected="${user.role == role}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="imageFile">Ảnh</label>
+                <input type="file" class="form-control-file" name="imageFile">
+                <img th:src="'data:image/jpeg;base64,' + ${user.userImageUrl}" thvalue="${user.userImageUrl}" alt="User Image" class="img-thumbnail mt-2" style="max-width: 200px;">
             </div>
             <button type="submit" class="btn btn-success">Lưu</button>
             <a href="/admin/user" class="btn btn-secondary">Hủy</a>

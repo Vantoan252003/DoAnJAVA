@@ -17,9 +17,11 @@
                 <tr>
                     <th>ID người dùng</th>
                     <th>Tên người dùng</th>
+                    <th>Họ tên</th>
                     <th>Email</th>
                     <th>Mật khẩu</th>
                     <th>Ngày tạo</th>
+                    <th>Vai trò</th>
                     <th>Ảnh</th>
                     <th>Hành động</th>
                 </tr>
@@ -28,10 +30,12 @@
                 <tr th:each="user : ${list}">
                     <td th:text="${user.userId}"></td>
                     <td th:text="${user.username}"></td>
+                    <td th:text="${user.fullname}"></td>
                     <td th:text="${user.email}"></td>
                     <td th:text="${user.password}"></td>
                     <td th:text="${user.createdAt}"></td>
-                    <td><img th:src="@{'/image/' + ${user.userImage}}" alt="ảnh lỗi" width="100"> </td>
+                    <td th:text="${user.role}"></td>
+                    <td><img th:src="'data:image/jpeg;base64,' + ${user.userImageUrl}" alt="ảnh lỗi" width="100"> </td>
                     <td>
                         <a th:href="@{/admin/user/edit/{userId}(userId=${user.userId})}" class="btn btn-primary btn-sm">Sửa</a>
                         <a th:href="@{/admin/user/delete/{userId}(userId=${user.userId})}" class="btn btn-danger btn-sm" onclick="return confirm('Có chắc muốn xóa không ní ?')">Xóa</a>

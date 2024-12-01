@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import ecourse.model.Role;
 import ecourse.model.UserClass;
 import ecourse.model.UserRepository;
+import ecourse.service.UserService;
 
 @Controller
 public class UserController {
     @Autowired UserRepository userRepository;
+    @Autowired private UserService userService;
     @GetMapping("/admin/user")
     public String index(Model model) {
         model.addAttribute("list", userRepository.findAll());
@@ -26,8 +29,8 @@ public class UserController {
         return "admin/user/add";
     }
     @PostMapping("/admin/user/add")
-    public String add(@ModelAttribute UserClass post) {
-        userRepository.save(post);
+    public String add(@ModelAttribute UserClass user) {
+        userService.updateImage(user);
         return "redirect:/admin/user";
     }
     //Sửa dữ liệu
@@ -35,12 +38,13 @@ public class UserController {
     public String edit(@PathVariable("userId") short userId, Model model) {
         UserClass user = userRepository.findById(userId).orElse(null);
         model.addAttribute("user", user);
+        model.addAttribute("roles", Role.values());
         return "admin/user/edit";
     }
     @PostMapping("/admin/user/edit/{userId}")
     public String update(@PathVariable("userId") short userId, @ModelAttribute UserClass post) {
         post.setUserId(userId);
-        userRepository.save(post);
+        userService.updateImage(post);
         return "redirect:/admin/user";
     }
     //Xóa

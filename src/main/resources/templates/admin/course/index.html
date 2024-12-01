@@ -20,6 +20,7 @@
                     <th>Miêu tả</th>
                     <th>Ngày tạo</th>
                     <th>Ảnh</th>
+                    <th>Giáo viên</th>
                     <th>Giá</th>
                     <th>Thể loại</th>
                     <th>Hành động</th>
@@ -33,7 +34,7 @@
                     <td th:text="${o.description}"></td>
                     <td th:text="${o.createdAt}"></td>
                     <td><img th:src="'data:image/jpeg;base64,' + ${o.image_url}" alt="ảnh lỗi" width="100"> </td>
-                    
+                    <td th:text="${o.teacherId}"></td>
                     <td th:text="${o.price}"></td>
                     <td th:text="${o.category}"></td>
                     <td>

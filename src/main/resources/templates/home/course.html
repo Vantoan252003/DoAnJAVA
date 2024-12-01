@@ -24,9 +24,27 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
-    <link href="/css/image-custom.css" rel="stylesheet">
+    <link href="/css/image-container.css" rel="stylesheet">
 </head>
+<style>
+    .row {
+    display: flex;
+    flex-wrap: wrap; /* Đảm bảo các cột sẽ xuống dòng khi không đủ chỗ */
+}
 
+.col-lg-4, .col-md-6, .mb-4 {
+    display: flex; /* Đảm bảo các card đều có chiều cao đồng nhất */
+    flex-direction: column; /* Xếp nội dung theo chiều dọc */
+}
+
+.rounded {
+    flex-grow: 1; /* Buộc card phải chiếm đều không gian còn lại */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Giãn đều nội dung bên trong */
+}
+
+</style>
 <body>
     
     <div layout:fragment="content">
@@ -139,16 +157,19 @@
                 <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">KHÓA HỌC</h5>
                 <h1>Các khóa bán chạy</h1>
             </div>
-            <div class="row" >
+            <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4" th:each="o :${list}">
                     <div class="rounded overflow-hidden mb-2">
-                        <img class="image-custom" th:src="'data:image/jpeg;base64,' + ${o.image_url}" alt="ảnh lỗi" >
+                        <div class="image-container">
+                            <img class="img-fluid" th:src="'data:image/jpeg;base64,' + ${o.image_url}" alt="ảnh lỗi">
+                        </div>
                         <div class="bg-secondary p-4">
                             <div class="d-flex justify-content-between mb-3">
                                 <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 Học viên</small>
                                 <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
                             </div>
                             <a class="h5" th:text="${o.title}"></a>
+            
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
                                     <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
@@ -159,6 +180,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>

@@ -1,0 +1,15 @@
+.image-container {
+    width: 100%; /* Chiều rộng đầy đủ theo khung cha */
+    height: 200px; /* Cố định chiều cao ảnh */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Cắt ảnh nếu lớn hơn khung */
+    background-color: #f8f9fa; /* Màu nền phòng khi ảnh lỗi */
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh lấp đầy mà không bị méo */
+}

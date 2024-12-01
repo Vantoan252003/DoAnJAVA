@@ -25,9 +25,23 @@ public class Course {
     private Date createdAt;
     @Column(name = "description")
     private String description;
-    
+    @Column(name = "teacher_id")
+    private short teacherId;
     @Column(name = "image_url")
     private String image_url;
+    public short getTeacherId() {
+        return teacherId;
+    }
+    public void setTeacherId(short teacherId) {
+        this.teacherId = teacherId;
+    }
+    public List<Enrollments> getEnrollM() {
+        return enrollM;
+    }
+    public void setEnrollM(List<Enrollments> enrollM) {
+        this.enrollM = enrollM;
+    }
+
     @Column(name ="price")
     private float price;
     @Column(name = "category")
