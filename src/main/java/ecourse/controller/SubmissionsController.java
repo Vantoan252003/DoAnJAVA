@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ecourse.model.CourseRepository;
 import ecourse.model.Submissions;
 import ecourse.model.SubmissionsRepository;
-import ecourse.model.UserClass;
 import ecourse.model.UserRepository;
 
 @Controller
