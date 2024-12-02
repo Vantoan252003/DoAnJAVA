@@ -4,39 +4,51 @@
     layout:decorate="/admin/layoutAdmin">
 <head>
     <meta charset="UTF-8">
-    <title>Thêm bài nộp</title>
+    <title>Thêm giảng viên</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div layout:fragment="content">
     <div class="container mt-5">
-        <h2>Thêm bài nộp mới</h2>
+        <h2>Thêm giảng viên mới</h2>
 
         <form  method="post">
             <div class="form-group">
-                <label for="assignmentId">ID Bài tập</label>
-                <input type="number" class="form-control" name="assignmentId" th:value="o.assignmentId" required>
+                <label for="teacherId">ID Giảng viên</label>
+                <input type="number" class="form-control" name="teacherId"  required>
                 <!-- <select name="assign.assignmentId" class="form-control">
                     <option th:each="o: ${assignList}" th:value="${o.assignmentId}" th:text="${o.title}"></option>
                 </select> -->
             </div>
             <div class="form-group">
-                <label for="userId">ID người dùng</label>
-                <input type="number" class="form-control" name="userId" th:value="o.userId" required>
+                <label for="fullname">Họ và tên</label>
+                <input type="text" class="form-control" name="fullname"  required>
                 <!-- <select name="user.userId" class="form-control">
                     <option th:each="o: ${userList}" th:value="${o.userId}" th:text="${o.username}"></option>
                 </select> -->
             </div>
             <div class="form-group">
-                <label for="title">Nội dung</label>
-                <textarea class="form-control"  name="content" rows="3" required></textarea>
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email"  required>
             </div>
             <div class="form-group">
-                <label for="category">Ngày nộp</label>
-                <input type="date" class="form-control"  name="submittedAt" required>
+                <label for="password">Mật khẩu</label>
+                <input type="password" class="form-control" name="password"  required>
+            </div>
+            <div class="form-group">
+                <label for="createdAt">Ngày tạo</label>
+                <input type="date" class="form-control"  name="createdAt" required>
+            </div>
+            <div class="form-group">
+                <label for="specialty">Chuyên ngành</label>
+                <input type="text" class="form-control" name="specialty"  required>
+            </div>
+            <div class="form-group">
+                <label for="imageUrl">Ảnh</label>
+                <input type="image" class="form-control" name="imageUrl" required>
             </div>
             <button type="submit" class="btn btn-success">Lưu</button>
-            <a href="/admin/submissions" class="btn btn-secondary">Hủy</a>
+            <a href="/admin/teacher" class="btn btn-secondary">Hủy</a>
         </form>
     </div></div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
