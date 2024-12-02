@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="/admin/layoutAdmin">
+<head>
+    <meta charset="UTF-8">
+    <title>Chỉnh sửa bài</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div layout:fragment="content">
+    <div class="container mt-5">
+        <h2>Chỉnh sửa bài</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="assignmentId">ID Bài tập</label>
+                <input type="number" class="form-control" name="assignmentId" th:value="o.assignmentId" required>
+                <!-- <select name="assign.assignmentId" class="form-control">
+                    <option th:each="o: ${assignList}" th:value="${o.assignmentId}" th:text="${o.title}"></option>
+                </select> -->
+            </div>
+            <div class="form-group">
+                <label for="userId">ID người dùng</label>
+                <input type="number" class="form-control" name="userId" th:value="o.userId" required>
+                <!-- <select name="user.userId" class="form-control">
+                    <option th:each="o: ${userList}" th:value="${o.userId}" th:text="${o.username}"></option>
+                </select> -->
+            </div>
+            <div class="form-group">
+                <label for="title">Nội dung</label>
+                <textarea class="form-control"  name="content" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category">Ngày nộp</label>
+                <input type="date" class="form-control"  name="submittedAt" required>
+            </div>
+            <button type="submit" class="btn btn-success">Lưu</button>
+            <a href="/admin/submissions" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
