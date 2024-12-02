@@ -1,6 +1,7 @@
 package ecourse.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ecourse.model.UserClass;
@@ -9,14 +10,16 @@ import ecourse.model.UserRepository;
 public class UserServiceImpl implements UserInterface {
     @Autowired
     private UserRepository userRepository;
+    @Autowired private BCryptPasswordEncoder passwordEncoder;
 	@Override
 	public UserClass createUser(UserClass user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
-		// Implementation here
+	
 	}
     @Override
     public boolean checkEmail(String email) {
-        // TODO Auto-generated method stub
+      
         return userRepository.existsByEmail(email);
     }
     
