@@ -46,5 +46,11 @@ public class CourseController {
         courseService.updateCourse(course);
         return "redirect:/admin/course";
     }
+    //Xóa
+    @GetMapping("/admin/course/delete/{courseId}")
+    public String delete(@PathVariable("courseId") short courseId) {
+        courseRepository.deleteById(courseId);
+        return "redirect:/admin/course";
+    }
 
 }
