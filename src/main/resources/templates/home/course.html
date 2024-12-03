@@ -12,39 +12,19 @@
     <!-- Favicon -->
     <link href="/img/favicon.ico" rel="icon">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/image-container.css" rel="stylesheet">
 </head>
-<style>
-    .row {
-    display: flex;
-    flex-wrap: wrap; /* Đảm bảo các cột sẽ xuống dòng khi không đủ chỗ */
-}
 
-.col-lg-4, .col-md-6, .mb-4 {
-    display: flex; /* Đảm bảo các card đều có chiều cao đồng nhất */
-    flex-direction: column; /* Xếp nội dung theo chiều dọc */
-}
-
-.rounded {
-    flex-grow: 1; /* Buộc card phải chiếm đều không gian còn lại */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Giãn đều nội dung bên trong */
-}
-
-</style>
 <body>
     
     <div layout:fragment="content">
@@ -168,8 +148,9 @@
                                 <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 Học viên</small>
                                 <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
                             </div>
-                            <a class="h5" th:text="${o.title}"></a>
-            
+                            <div class="cat-item position-relative overflow-hidden rounded mb-2">
+                            <a class=" text-decoration-none" th:href="@{/home/detailCourse/{courseId}(courseId=${o.courseId})}"><h5  th:text="${o.title}"></h5></a>
+                            </div>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
                                     <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
