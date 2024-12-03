@@ -30,8 +30,8 @@ public class CourseController {
     // Thêm dữ liệu
     @GetMapping("/admin/course/add")
     public String add(Model model) {
-        model.addAttribute("teacherList", teacher.findAll());
-        model.addAttribute("courseList", course.findAll());
+        model.addAttribute("teacherList", teacherRepository.findAll());
+        model.addAttribute("courseList", courseRepository.findAll());
         return "admin/course/add";
     }
 
