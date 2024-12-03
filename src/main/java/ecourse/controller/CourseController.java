@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import ecourse.model.Course;
 import ecourse.repository.CourseRepository;
+import ecourse.repository.LessonsRepository;
 import ecourse.repository.TeacherRepository;
 import ecourse.service.CourseService;
 
@@ -21,6 +22,8 @@ public class CourseController {
     private CourseService courseService;
     @Autowired
     private TeacherRepository teacherRepository;
+    @Autowired
+    private LessonsRepository lessonsRepository;
     @GetMapping("/admin/course")
     public String index(Model model) {
         model.addAttribute("list", courseRepository.findAll());
@@ -67,6 +70,7 @@ public class CourseController {
     public String detailCourse(@PathVariable("courseId") short courseId, Model model) {
         Course course = courseRepository.findById(courseId).orElse(null);
         model.addAttribute("course", course);
+        model.addAttribute("lesson", lessonsRepository.findAll());
         model.addAttribute("teacher", teacherRepository.findAll());
         return "home/detailCourse";
     }

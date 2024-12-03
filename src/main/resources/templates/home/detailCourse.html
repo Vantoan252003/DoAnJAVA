@@ -142,8 +142,15 @@
                     </ul>
                     <div class="tab-content py-4">
                         <div id="description" class="tab-pane active">
-                            <h5 th:text="${course.description}"></h5>
-                            <img class="img-fluid rounded" th:src="'data:image/jpeg;base64,' + ${course.image_url}">
+                            <h2 th:text="${course.title}"></h2>
+                            <p th:text="${course.description}"></p>
+                            <img class="img-fluid rounded" th:src="'data:image/jpeg;base64,' + ${course.image_url}"><br>
+                            <p >Video demo khóa học thử</p>
+                            <iframe width="400" height="260" th:src="${lesson.videoUrl}"
+                                frameborder="20"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
                         </div>
                     </div>
                 </div>
