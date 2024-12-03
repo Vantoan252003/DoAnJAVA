@@ -15,11 +15,11 @@ import ecourse.service.CourseService;
 
 @Controller
 public class CourseController {
-    @Autowired
+    @Autowired CourseRepository course;
     private CourseRepository courseRepository;
-    @Autowired
+    @Autowired 
     private CourseService courseService;
-    @Autowired
+    @Autowired TeacherRepository teacher;
     private TeacherRepository teacherRepository;
     @GetMapping("/admin/course")
     public String index(Model model) {
@@ -29,7 +29,9 @@ public class CourseController {
 
     // Thêm dữ liệu
     @GetMapping("/admin/course/add")
-    public String add() {
+    public String add(Model model) {
+        model.addAttribute("teacherList", teacher.findAll());
+        model.addAttribute("courseList", course.findAll());
         return "admin/course/add";
     }
 

@@ -15,11 +15,15 @@
         <form  method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Tên khóa học</label>
-                <input type="text" class="form-control"  name="title" required>
+                <select name="CourseS.userId" class="form-control">
+                    <option th:each="o: ${courseList}" th:value="${o.courseId}" th:text="${o.title}"></option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="title">ID Giảng viên</label>
-                <input type="text" class="form-control"  name="teacherId" required>
+                <select name="TeaccherS.userId" class="form-control">
+                    <option th:each="o: ${userList}" th:value="${o.userId}" th:text="${o.username}"></option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="description">Miêu tả</label>

@@ -27,7 +27,6 @@ public class Enrollments {
     public UserClass getClazz() {
         return Clazz;
     }
- 
     public void setClazz(UserClass Clazz) {
         this.Clazz = Clazz;
     }

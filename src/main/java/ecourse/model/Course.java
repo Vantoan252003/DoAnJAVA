@@ -59,6 +59,7 @@ public class Course {
     public void setEnroll(List <Enrollments> enroll){
         this.enrollM = enroll;
     }
+    
     public short getCourseId() {
         return courseId;
     }
