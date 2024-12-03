@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ecourse.model.Course;
-import ecourse.model.CourseRepository;
+import ecourse.repository.CourseRepository;
+
 import org.springframework.util.StringUtils;
 
 @Service

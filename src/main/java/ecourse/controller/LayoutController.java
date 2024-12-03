@@ -6,9 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import ecourse.model.CourseRepository;
 import ecourse.model.UserClass;
-
+import ecourse.repository.CourseRepository;
 import ecourse.service.UserInterface;
 import jakarta.servlet.http.HttpSession;
 

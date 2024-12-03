@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import ecourse.model.CourseRepository;
 import ecourse.model.Submissions;
-import ecourse.model.SubmissionsRepository;
-import ecourse.model.UserRepository;
+import ecourse.repository.CourseRepository;
+import ecourse.repository.SubmissionsRepository;
+import ecourse.repository.UserRepository;
 
 @Controller
 public class SubmissionsController {

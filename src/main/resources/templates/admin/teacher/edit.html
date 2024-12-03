@@ -15,14 +15,11 @@
         <form  method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="fullname">Họ và tên</label>
-                <input type="text" class="form-control" name="fullname"  required>
-                <!-- <select name="user.userId" class="form-control">
-                    <option th:each="o: ${userList}" th:value="${o.userId}" th:text="${o.username}"></option>
-                </select> -->
+                <input type="text" class="form-control" name="fullname" th:value="${teacher.fullname}"  required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" name="email"  required>
+                <input type="email" class="form-control" name="email" th:value="${teacher.email}" required>
             </div>
             <div class="form-group">
                 <label for="password">Mật khẩu</label>
@@ -30,11 +27,11 @@
             </div>
             <div class="form-group">
                 <label for="createdAt">Ngày tạo</label>
-                <input type="date" class="form-control"  name="createdAt" required>
+                <input type="date" class="form-control"  name="createdAt" th:value="${teacher.createdAt}" required>
             </div>
             <div class="form-group">
                 <label for="specialty">Chuyên ngành</label>
-                <input type="text" class="form-control" name="specialty"  required>
+                <input type="text" class="form-control" name="specialty" th:value="${teacher.fullname}"  required>
             </div>
             <div class="form-group">
                 <label for="image_url">Ảnh</label>

@@ -46,6 +46,7 @@ public class UserClass {
     private String userImageUrl;
     @Column(name = "fullname")
     private String fullname;
+    //nối phiếu học
     @OneToMany(mappedBy = "Clazz")
     private List<Enrollments> enroll;
     public List<Enrollments> getEnoll(){
@@ -54,6 +55,7 @@ public class UserClass {
     public void setEnroll(List <Enrollments> enroll){
         this.enroll = enroll;
     }
+    //nối xong
     public MultipartFile getImageFile() {
         return imageFile;
     }

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ecourse.model.Course;
-import ecourse.model.CourseRepository;
-import ecourse.model.TeacherRepository;
+import ecourse.repository.CourseRepository;
+import ecourse.repository.TeacherRepository;
 import ecourse.service.CourseService;
 
 @Controller

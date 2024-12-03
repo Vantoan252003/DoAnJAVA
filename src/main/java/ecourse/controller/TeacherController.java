@@ -1,7 +1,7 @@
 package ecourse.controller;
 
 import ecourse.model.Teacher;
-import ecourse.model.TeacherRepository;
+import ecourse.repository.TeacherRepository;
 import ecourse.service.TeacherService;
 
 import org.springframework.beans.factory.annotation.Autowired;

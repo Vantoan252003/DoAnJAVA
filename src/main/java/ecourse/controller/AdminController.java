@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import ecourse.model.UserClass;
-import ecourse.model.UserRepository;
+import ecourse.repository.UserRepository;
 
 @Controller
 public class AdminController {

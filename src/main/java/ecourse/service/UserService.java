@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import ecourse.model.UserClass;
-import ecourse.model.UserRepository;
+import ecourse.repository.UserRepository;
 
 @Service
 public class UserService {

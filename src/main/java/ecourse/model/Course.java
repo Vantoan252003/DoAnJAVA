@@ -50,7 +50,7 @@ public class Course {
     private float price;
     @Column(name = "category")
     private String category;
-  
+    //nối khóa học
     @OneToMany(mappedBy = "Course")
     private List<Enrollments> enrollM;
     public List<Enrollments> getEroll(){
@@ -59,7 +59,20 @@ public class Course {
     public void setEnroll(List <Enrollments> enroll){
         this.enrollM = enroll;
     }
-    
+   
+  
+    //nối xong
+
+    //nối tiếp
+    @OneToMany(mappedBy = "Course")
+    private List<Lessons> lesson;
+    public List<Lessons> getLessonM(){
+        return lesson;
+    }
+    public void setLessonM(List <Lessons> lesson){
+        this.lesson = lesson;
+    }
+    // nối xong
     public short getCourseId() {
         return courseId;
     }

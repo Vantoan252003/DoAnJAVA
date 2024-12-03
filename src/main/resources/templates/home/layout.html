@@ -130,14 +130,32 @@
                             </div>
                             <div sec:authorize="isAuthenticated()">
 
-                                <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="/logout">Đăng xuất
+                                <div class="dropdown"></div>
+                                <a class=" px-4 ml-auto d-none d-lg-block" href="#"
+                                    id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <img class="rounded-circle" style="width: 50px; height: 50px;" th:src="'data:image/jpeg;base64,' + ${#authentication.principal.imageUrl}"
+                                        alt="Ảnh người dùng" width="100">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="/home/profile">
+                                        <i class="fa fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Thông tin
                                     </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/logout">
+                                        <i class="fa fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Đăng xuất
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </nav>
             </div>
+            </nav>
         </div>
+    </div>
     </div>
     <!-- Navbar End -->
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ecourse.model.Assignments;
-import ecourse.model.AssignmentsRepository;
+import ecourse.repository.AssignmentsRepository;
 
 
 

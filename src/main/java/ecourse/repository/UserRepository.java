@@ -1,6 +1,8 @@
-package ecourse.model;
+package ecourse.repository;
 
 import org.springframework.data.repository.CrudRepository;
+
+import ecourse.model.UserClass;
 
 public interface UserRepository extends CrudRepository<UserClass, Short> {
     public boolean existsByEmail(String email);

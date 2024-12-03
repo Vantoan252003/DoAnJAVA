@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import ecourse.model.CourseRepository;
 import ecourse.model.Enrollments;
-import ecourse.model.EnrollmentsRepository;
-import ecourse.model.UserRepository;
+import ecourse.repository.CourseRepository;
+import ecourse.repository.EnrollmentsRepository;
+import ecourse.repository.UserRepository;
 
 
 

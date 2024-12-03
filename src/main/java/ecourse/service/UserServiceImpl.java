@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ecourse.model.UserClass;
-import ecourse.model.UserRepository;
+import ecourse.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserInterface {
     @Autowired

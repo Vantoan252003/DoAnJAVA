@@ -26,7 +26,7 @@
             <tbody>
                 <tr th:each="o : ${list}">
                     <td th:text="${o.lessonId}"></td>
-                    <td th:text="${o.courseId}"></td>
+                    <td th:text="${o.Course.title + '  (ID = '+ o.Course.courseId + ')'}"></td>
                     <td th:text="${o.title}"></td>
                     <td th:text="${o.content}"></td>
                     <td th:text="${o.createdAt}"></td>

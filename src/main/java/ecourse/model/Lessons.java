@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity(name = "lessons")
 public class Lessons {
@@ -15,8 +17,8 @@ public class Lessons {
     @Column(name = "lesson_id")
     private short lessonId;
 
-    @Column(name = "course_id")
-    private short courseId;
+    // @Column(name = "course_id")
+    // private short courseId;
 
     @Column(name = "title")
     private String title;
@@ -29,7 +31,17 @@ public class Lessons {
 
     @Column(name = "created_at")
     private Date createdAt;
-
+    //nối khóa học
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    public Course Course;
+    public Course getCourse() {
+        return Course;
+    }
+    public void setCourse(Course Course) {
+        this.Course = Course;
+    }
+    //nối xong
     public short getLessonId() {
         return lessonId;
     }
@@ -38,13 +50,13 @@ public class Lessons {
         this.lessonId = lessonId;
     }
 
-    public short getCourseId() {
-        return courseId;
-    }
+    // public short getCourseId() {
+    //     return courseId;
+    // }
 
-    public void setCourseId(short courseId) {
-        this.courseId = courseId;
-    }
+    // public void setCourseId(short courseId) {
+    //     this.courseId = courseId;
+    // }
 
     public String getTitle() {
         return title;

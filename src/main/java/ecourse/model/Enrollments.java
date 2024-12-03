@@ -21,6 +21,9 @@ public class Enrollments {
 
     // @Column(name = "user_id")
     // private short userId;
+
+
+    //nối người dùng
     @ManyToOne
     @JoinColumn(name ="user_id")
     private UserClass Clazz;
@@ -30,6 +33,10 @@ public class Enrollments {
     public void setClazz(UserClass Clazz) {
         this.Clazz = Clazz;
     }
+    //nối xong
+    
+
+    // nối khóa học
     @ManyToOne
     @JoinColumn(name ="course_id")
     private Course Course;
@@ -39,6 +46,7 @@ public class Enrollments {
     public void setCourse(Course Course) {
         this.Course = Course;
     }
+    //nối xong
 
     @Column(name ="enrolled_at")
     private Date enrolledDate;
