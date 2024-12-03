@@ -41,111 +41,114 @@
             </div>
         </div>
         <!-- Header End -->
-<style>
-    
-    .card {
-    border-radius: 10px;
-}
+        <style>
+            .card {
+                border-radius: 10px;
+            }
 
-.card-title {
-    font-size: 1.2rem;
-    color: #007bff;
-}
+            .card-title {
+                font-size: 1.2rem;
+                color: #007bff;
+            }
 
-.btn {
-    width: 100%;
-}
+            .btn {
+                width: 100%;
+            }
 
-.tab-content {
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 5px;
-}
-</style>
-<!-- Giao diện chi tiết khóa học -->
-<div class="container py-5">
-    <div class="row">
-        <!-- Cột trái (Hình ảnh và thông tin chính) -->
-        <div class="col-lg-8">
+            .tab-content {
+                border: 1px solid #ddd;
+                padding: 15px;
+                border-radius: 5px;
+            }
+        </style>
+        <!-- Giao diện chi tiết khóa học -->
+        <div class="container py-5">
             <div class="row">
-                <!-- Ảnh khóa học -->
-                <div class="col-lg-6">
-                    <img class="img-fluid rounded" th:src="'data:image/jpeg;base64,' + ${course.image_url}">
-                    <div class="row my-4">
-                        <div class="col-lg-5 text-center">
-                            <button class="btn btn-warning mx-2">Trao đổi KH</button>
-                           
+                <!-- Cột trái (Hình ảnh và thông tin chính) -->
+                <div class="col-lg-8">
+                    <div class="row">
+                        <!-- Ảnh khóa học -->
+                        <div class="col-lg-6">
+                            <img class="img-fluid rounded" th:src="'data:image/jpeg;base64,' + ${course.image_url}">
+                            <div class="row my-4">
+                                <div class="col-lg-5 text-center">
+                                    <button class="btn btn-warning mx-2">Trao đổi KH</button>
+
+                                </div>
+                                <div class="col-lg-5 text-center">
+                                    <button class="btn btn-success mx-2">Học Thử</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-lg-5 text-center">
-                            <button class="btn btn-success mx-2">Học Thử</button>
+                        <!-- Thông tin khóa học -->
+                        <div class="col-lg-6">
+                            <h3 class="text-primary" th:text="${course.title}"></h3>
+                            <h4><span class="text-success" th:text="${course.price}"></span></h4>
+                            <p><b>Thời lượng:</b> 4 Module</p>
+                            <b>Giảng viên :</b> <p th:text=" ${course.teacherId}" ></p>
+                            <p><b>Sở hữu khóa học:</b> Trọn đời</p>
+                            <div class="row my-4">
+                                <div class="col-lg-5 text-right">
+                                    <button class="btn btn-primary mx-2">Thêm vào giỏ</button>
+                                </div>
+                                <div class="col-lg-5 text-right">
+                                    <button class="btn btn-danger mx-2">Thanh toán ngay</button>
+                                </div>
+                            </div>
+                        
                         </div>
                     </div>
                 </div>
-                <!-- Thông tin khóa học -->
-                <div class="col-lg-6">
-                    <h3 class="text-primary" th:text="${course.title}"></h3>
-                    <h4><span class="text-success" th:text="${course.price}"></span></h4>
-                    <p><b>Thời lượng:</b> 4 Module</p>
-                    <p><b>Giảng viên:</b></p>
-                    <p><b>Sở hữu khóa học:</b> Trọn đời</p>
-                    <div class="row my-4">
-                        <div class="col-lg-5 text-right">
-                            <button class="btn btn-primary mx-2">Thêm vào giỏ</button>
-                 
-                        </div>
-                        <div class="col-lg-5 text-right">
-                            <button class="btn btn-danger mx-2">Thanh toán ngay</button>
+
+                <!-- Cột phải (Thông tin thêm) -->
+
+                <div class="col-lg-4">
+
+                    <div class="card border-info mb-4">
+                        <div class="card-body">
+                        
+                            <div class="row">
+                                <img class="image" src="/img/day-du-bai-giang-300x300.png" style="width: 65px;">
+                                <h5 class="card-title">Đầy Đủ Bài Giảng</h5>
+                                <p class="card-text">Cam kết video bài giảng và tài liệu giống mô tả</p>
+                            </div>
+                            <div class="row">
+                                <img class="image" src="/img/hoc-online-tien-loi-300x300.png" style="width: 65px;">
+                                <h5 class="card-title">Học Online Tiện Lợi</h5>
+                                <p class="card-text">Học online trên drive bằng điện thoại hoặc máy tính</p>
+                            </div>
+                            <div class="row mt-2">
+                                <img class="image" src="/img/kich-hoat-nhanh-chong-100x100.png" style="width: 65px;">
+                                <h5 class="card-title">Kích Hoạt Nhanh</h5>
+                                <p class="card-text">Nhận khóa học tự động trong vòng 1-2 phút</p>
+                            </div>
+
                         </div>
                     </div>
-                    <p><i>Mua khóa học này nhận được <span class="text-success">34900 Points</span></i></p>
+                </div>
+            </div>
+
+            <!-- Nút hành động -->
+
+
+            <!-- Tab nội dung -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#description" data-toggle="tab">Mô tả</a>
+                        </li>
+                        <!-- Thêm các tab khác nếu cần -->
+                    </ul>
+                    <div class="tab-content py-4">
+                        <div id="description" class="tab-pane active">
+                            <h5 th:text="${course.description}"></h5>
+                            <img class="img-fluid rounded" th:src="'data:image/jpeg;base64,' + ${course.image_url}">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Cột phải (Thông tin thêm) -->
-        <div class="col-lg-4">
-            <div class="card border-info mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Đầy Đủ Bài Giảng</h5>
-                    <p class="card-text">Cam kết video bài giảng và tài liệu giống mô tả</p>
-                </div>
-            </div>
-            <div class="card border-info mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Học Online Tiện Lợi</h5>
-                    <p class="card-text">Học online trên drive bằng điện thoại hoặc máy tính</p>
-                </div>
-            </div>
-            <div class="card border-info">
-                <div class="card-body">
-                    <h5 class="card-title">Kích Hoạt Nhanh</h5>
-                    <p class="card-text">Nhận khóa học tự động trong vòng 1-2 phút</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Nút hành động -->
-    
-
-    <!-- Tab nội dung -->
-    <div class="row">
-        <div class="col-lg-12">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#description" data-toggle="tab">Mô tả</a>
-                </li>
-                <!-- Thêm các tab khác nếu cần -->
-            </ul>
-            <div class="tab-content py-4">
-                <div id="description" class="tab-pane active">
-                    <h5 th:text="${course.description}"></h5>
-                    <img class="img-fluid rounded" th:src="'data:image/jpeg;base64,' + ${course.image_url}">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
         <!-- Courses Start -->
@@ -172,7 +175,8 @@
                                 <div class="border-top mt-4 pt-4">
                                     <div class="d-flex justify-content-between">
                                         <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5
-                                            <small>(250)</small></h6>
+                                            <small>(250)</small>
+                                        </h6>
                                         <h5 class="m-0" th:text="${o.price} +'$'"></h5>
                                     </div>
                                 </div>
