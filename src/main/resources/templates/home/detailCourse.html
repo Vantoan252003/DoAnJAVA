@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="/home/layout">
+
+<head>
+    <meta charset="utf-8">
+    <title>ECOURSES - Online Courses HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/image-container.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <!-- Header Start -->
+        <div class="container-fluid page-header" style="margin-bottom: 90px;">
+            <div class="container">
+                <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
+                    <h3 class="display-4 text-white text-uppercase">Courses</h3>
+                    <div class="d-inline-flex text-white">
+                        <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                        <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                        <p class="m-0 text-uppercase">Courses</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+<style>
+    
+    .card {
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+.btn {
+    width: 100%;
+}
+
+.tab-content {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+}
+</style>
+<!-- Giao diện chi tiết khóa học -->
+<div class="container py-5">
+    <div class="row">
+        <!-- Cột trái (Hình ảnh và thông tin chính) -->
+        <div class="col-lg-8">
+            <div class="row">
+                <!-- Ảnh khóa học -->
+                <div class="col-lg-6">
+                    <img class="img-fluid rounded" th:src="'data:image/jpeg;base64,' + ${course.image_url}">
+                    <div class="row my-4">
+                        <div class="col-lg-5 text-center">
+                            <button class="btn btn-warning mx-2">Trao đổi KH</button>
+                           
+                        </div>
+                        <div class="col-lg-5 text-center">
+                            <button class="btn btn-success mx-2">Học Thử</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Thông tin khóa học -->
+                <div class="col-lg-6">
+                    <h3 class="text-primary" th:text="${course.title}"></h3>
+                    <h4><span class="text-success" th:text="${course.price}"></span></h4>
+                    <p><b>Thời lượng:</b> 4 Module</p>
+                    <p><b>Giảng viên:</b></p>
+                    <p><b>Sở hữu khóa học:</b> Trọn đời</p>
+                    <div class="row my-4">
+                        <div class="col-lg-5 text-right">
+                            <button class="btn btn-primary mx-2">Thêm vào giỏ</button>
+                 
+                        </div>
+                        <div class="col-lg-5 text-right">
+                            <button class="btn btn-danger mx-2">Thanh toán ngay</button>
+                        </div>
+                    </div>
+                    <p><i>Mua khóa học này nhận được <span class="text-success">34900 Points</span></i></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cột phải (Thông tin thêm) -->
+        <div class="col-lg-4">
+            <div class="card border-info mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Đầy Đủ Bài Giảng</h5>
+                    <p class="card-text">Cam kết video bài giảng và tài liệu giống mô tả</p>
+                </div>
+            </div>
+            <div class="card border-info mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Học Online Tiện Lợi</h5>
+                    <p class="card-text">Học online trên drive bằng điện thoại hoặc máy tính</p>
+                </div>
+            </div>
+            <div class="card border-info">
+                <div class="card-body">
+                    <h5 class="card-title">Kích Hoạt Nhanh</h5>
+                    <p class="card-text">Nhận khóa học tự động trong vòng 1-2 phút</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nút hành động -->
+    
+
+    <!-- Tab nội dung -->
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#description" data-toggle="tab">Mô tả</a>
+                </li>
+                <!-- Thêm các tab khác nếu cần -->
+            </ul>
+            <div class="tab-content py-4">
+                <div id="description" class="tab-pane active">
+                    <h5 th:text="${course.description}"></h5>
+                    <img class="img-fluid rounded" th:src="'data:image/jpeg;base64,' + ${course.image_url}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Courses Start -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5">
+                    <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">KHÓA HỌC</h5>
+                    <h1>Các khóa bán chạy</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4" th:each="o :${list}">
+                        <div class="rounded overflow-hidden mb-2">
+                            <div class="image-container">
+                                <img class="img-fluid" th:src="'data:image/jpeg;base64,' + ${o.image_url}"
+                                    alt="ảnh lỗi">
+                            </div>
+                            <div class="bg-secondary p-4">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 Học viên</small>
+                                    <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
+                                </div>
+                                <a class="h5" th:text="${o.title}"></a>
+
+                                <div class="border-top mt-4 pt-4">
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5
+                                            <small>(250)</small></h6>
+                                        <h5 class="m-0" th:text="${o.price} +'$'"></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Courses End -->
+
+
+
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

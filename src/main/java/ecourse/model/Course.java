@@ -1,6 +1,7 @@
 package ecourse.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -11,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Transient;
 
 @Entity(name = "courses")
@@ -21,7 +23,7 @@ public class Course {
     private short courseId;
     @Column(name = "title")
     private String title;
-    @Column(name = "created_at")
+    @Column(name = "created_at",nullable = true)
     private Date createdAt;
     @Column(name = "description")
     private String description;
@@ -105,5 +107,11 @@ public class Course {
     public void setImageFile(MultipartFile imageFile) {
         this.imageFile = imageFile;
     }
-    
+     @PrePersist
+    protected void onCreate() {
+        if (this.createdAt == null) {
+            this.createdAt = Date.valueOf(LocalDate.now());
+        }
+       
+    }
 }
