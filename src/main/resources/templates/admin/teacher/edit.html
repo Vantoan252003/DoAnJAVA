@@ -12,14 +12,7 @@
     <div class="container mt-5">
         <h2>Chỉnh sửa</h2>
         
-        <form  method="post">
-            <div class="form-group">
-                <label for="teacherId">ID Giảng viên</label>
-                <input type="number" class="form-control" name="teacherId"  required>
-                <!-- <select name="assign.assignmentId" class="form-control">
-                    <option th:each="o: ${assignList}" th:value="${o.assignmentId}" th:text="${o.title}"></option>
-                </select> -->
-            </div>
+        <form  method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="fullname">Họ và tên</label>
                 <input type="text" class="form-control" name="fullname"  required>
@@ -44,9 +37,12 @@
                 <input type="text" class="form-control" name="specialty"  required>
             </div>
             <div class="form-group">
-                <label for="imageUrl">Ảnh</label>
-                <input type="image" class="form-control" name="imageUrl" required>
+                <label for="image_url">Ảnh</label>
+                <input type="file" class="form-control-file" name="imageFile">
+                <img th:src="'data:image/jpeg;base64,' + ${teacher.imageUrl}" thvalue="${teacher.imageUrl}" alt="Teacher Image" class="img-thumbnail mt-2" style="max-width: 200px;">
+          
             </div>
+
             <button type="submit" class="btn btn-success">Lưu</button>
             <a href="/admin/teacher" class="btn btn-secondary">Hủy</a>
         </form>

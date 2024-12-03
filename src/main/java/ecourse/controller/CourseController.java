@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import ecourse.model.Course;
 import ecourse.model.CourseRepository;
-import ecourse.model.Teacher;
 import ecourse.model.TeacherRepository;
 import ecourse.service.CourseService;
 

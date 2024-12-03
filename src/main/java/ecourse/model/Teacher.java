@@ -1,90 +1,117 @@
 package ecourse.model;
-import java.sql.Timestamp;
+
+import java.sql.Date;
+import java.time.LocalDate;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-    @Entity(name = "teachers")
-    public class Teacher {
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Id
-        @Column(name = "teacher_id")
-        private int teacherId;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Transient;
 
-        @Column(name = "fullname")
-        private String fullname;
+@Entity(name = "teachers")
+public class Teacher {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "teacher_id")
+    private Short teacherId;
 
-        @Column(name = "email")
-        private String email;
+    @Column(name = "fullname")
+    private String fullname;
 
-        @Column(name = "password")
-        private String password;
+    @Column(name = "email")
+    private String email;
 
-        @Column(name = "created_at")
-        private Timestamp createdAt;
+    @Column(name = "password")
+    private String password;
 
-        @Column(name = "specialty")
-        private String specialty;
+    @Column(name = "created_at", nullable = true)
+    private Date createdAt;
 
-        @Column(name = "image_url")
-        private String imageUrl;
+    @Column(name = "specialty")
+    private String specialty;
 
-        // Getters and Setters
-        public int getTeacherId() {
-            return teacherId;
-        }
+    @Column(name = "image_url")
+    private String imageUrl;
 
-        public void setTeacherId(int teacherId) {
-            this.teacherId = teacherId;
-        }
+    @Transient
+    private MultipartFile imageFile;
 
-        public String getFullname() {
-            return fullname;
-        }
+    // Getters and Setters
+    public Short getTeacherId() {
+        return teacherId;
+    }
 
-        public void setFullname(String fullname) {
-            this.fullname = fullname;
-        }
+    public void setTeacherId(Short teacherId) {
+        this.teacherId = teacherId;
+    }
 
-        public String getEmail() {
-            return email;
-        }
+    public String getFullname() {
+        return fullname;
+    }
 
-        public void setEmail(String email) {
-            this.email = email;
-        }
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 
-        public String getPassword() {
-            return password;
-        }
+    public String getEmail() {
+        return email;
+    }
 
-        public void setPassword(String password) {
-            this.password = password;
-        }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-        public Timestamp getCreatedAt() {
-            return createdAt;
-        }
+    public String getPassword() {
+        return password;
+    }
 
-        public void setCreatedAt(Timestamp createdAt) {
-            this.createdAt = createdAt;
-        }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-        public String getSpecialty() {
-            return specialty;
-        }
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
-        public void setSpecialty(String specialty) {
-            this.specialty = specialty;
-        }
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 
-        public String getImageUrl() {
-            return imageUrl;
-        }
+    public String getSpecialty() {
+        return specialty;
+    }
 
-        public void setImageUrl(String imageUrl) {
-            this.imageUrl = imageUrl;
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.createdAt == null) {
+            this.createdAt = Date.valueOf(LocalDate.now());
+
         }
     }
 
+    public MultipartFile getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(MultipartFile imageFile) {
+        this.imageFile = imageFile;
+    }
+    
+}

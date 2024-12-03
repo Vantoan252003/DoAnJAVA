@@ -32,7 +32,7 @@
                     <td th:text="${o.password}"></td>
                     <td th:text="${o.createdAt}"></td>
                     <td th:text="${o.specialty}"></td>
-                    <td th:text="${o.imageUrl}"></td>
+                    <td><img th:src="'data:image/jpeg;base64,' + ${o.imageUrl}" alt="ảnh lỗi" width="100"> </td>
                     
                         <td><a th:href="@{/admin/teacher/edit/{teacherId}(teacherId=${o.teacherId})}" class="btn btn-primary btn-sm">Sửa</a>
                             <a th:href="@{/admin/teacher/delete/{teacherId}(teacherId=${o.teacherId})}" class="btn btn-danger btn-sm" onclick="return confirm('Có chắc muốn xóa không ní ?')">Xóa</a></td>

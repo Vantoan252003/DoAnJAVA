@@ -12,14 +12,8 @@
     <div class="container mt-5">
         <h2>Thêm giảng viên mới</h2>
 
-        <form  method="post">
-            <div class="form-group">
-                <label for="teacherId">ID Giảng viên</label>
-                <input type="number" class="form-control" name="teacherId"  required>
-                <!-- <select name="assign.assignmentId" class="form-control">
-                    <option th:each="o: ${assignList}" th:value="${o.assignmentId}" th:text="${o.title}"></option>
-                </select> -->
-            </div>
+        <form  method="post" enctype="multipart/form-data">
+            
             <div class="form-group">
                 <label for="fullname">Họ và tên</label>
                 <input type="text" class="form-control" name="fullname"  required>
@@ -35,17 +29,14 @@
                 <label for="password">Mật khẩu</label>
                 <input type="password" class="form-control" name="password"  required>
             </div>
-            <div class="form-group">
-                <label for="createdAt">Ngày tạo</label>
-                <input type="date" class="form-control"  name="createdAt" required>
-            </div>
+          
             <div class="form-group">
                 <label for="specialty">Chuyên ngành</label>
                 <input type="text" class="form-control" name="specialty"  required>
             </div>
             <div class="form-group">
-                <label for="imageUrl">Ảnh</label>
-                <input type="image" class="form-control" name="imageUrl" required>
+                <label for="imageFile">Ảnh</label>
+                <input type="file" class="form-control" name="imageFile" required>
             </div>
             <button type="submit" class="btn btn-success">Lưu</button>
             <a href="/admin/teacher" class="btn btn-secondary">Hủy</a>

@@ -31,6 +31,8 @@ public class Course {
     private short teacherId;
     @Column(name = "image_url")
     private String image_url;
+    @Transient
+    private MultipartFile imageFile;
     public short getTeacherId() {
         return teacherId;
     }
@@ -48,8 +50,7 @@ public class Course {
     private float price;
     @Column(name = "category")
     private String category;
-    @Transient
-    private MultipartFile imageFile;
+  
     @OneToMany(mappedBy = "Course")
     private List<Enrollments> enrollM;
     public List<Enrollments> getEroll(){
@@ -107,11 +108,10 @@ public class Course {
     public void setImageFile(MultipartFile imageFile) {
         this.imageFile = imageFile;
     }
-     @PrePersist
+    @PrePersist
     protected void onCreate() {
         if (this.createdAt == null) {
             this.createdAt = Date.valueOf(LocalDate.now());
         }
-       
     }
 }
