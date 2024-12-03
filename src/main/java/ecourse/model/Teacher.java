@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Transient;
 
@@ -19,7 +21,17 @@ public class Teacher {
     @Id
     @Column(name = "teacher_id")
     private Short teacherId;
-
+  // nối khóa học
+    @ManyToOne
+    @JoinColumn(name ="course_id")
+    private Course Course;
+    public Course getCourse() {
+        return Course;
+    }
+    public void setCourse(Course Course) {
+        this.Course = Course;
+    }
+    //nối xong
     @Column(name = "fullname")
     private String fullname;
 
