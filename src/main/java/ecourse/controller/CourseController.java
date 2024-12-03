@@ -15,11 +15,11 @@ import ecourse.service.CourseService;
 
 @Controller
 public class CourseController {
-    @Autowired CourseRepository course;
+    @Autowired
     private CourseRepository courseRepository;
     @Autowired 
     private CourseService courseService;
-    @Autowired TeacherRepository teacher;
+    @Autowired
     private TeacherRepository teacherRepository;
     @GetMapping("/admin/course")
     public String index(Model model) {
