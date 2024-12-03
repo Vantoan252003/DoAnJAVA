@@ -33,7 +33,7 @@
                     <td th:text="${o.description}"></td>
                     <td th:text="${o.createdAt}"></td>
                     <td><img th:src="'data:image/jpeg;base64,' + ${o.image_url}" alt="ảnh lỗi" width="100"> </td>
-                    <td th:text="${o.teacherId}"></td>
+                    <td th:text="${o.Course.fullname + ' (ID=' + o.Course.teacherId +')'}"></td>
                     <td th:text="${o.price}"></td>
                     <td th:text="${o.category}"></td>
                     <td>

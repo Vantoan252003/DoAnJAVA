@@ -59,8 +59,6 @@ public class Course {
     public void setEnroll(List <Enrollments> enroll){
         this.enrollM = enroll;
     }
-   
-  
     //nối xong
 
     //nối tiếp
@@ -73,6 +71,16 @@ public class Course {
         this.lesson = lesson;
     }
     // nối xong
+    //nối giảng viên
+    @OneToMany(mappedBy = "Course")
+    private List<Teacher> teacherS;
+    public List<Teacher> getTeacher(){
+        return teacherS;
+    }
+    public void setTeacher(List <Teacher> teacherS){
+        this.teacherS = teacherS;
+    }
+    //nối xong
     public short getCourseId() {
         return courseId;
     }
