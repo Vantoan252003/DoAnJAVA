@@ -21,9 +21,9 @@ public class Teacher {
     @Id
     @Column(name = "teacher_id")
     private Short teacherId;
-  // nối khóa học
+    // nối khóa học
     @ManyToOne
-    @JoinColumn(name ="course_id")
+    @JoinColumn(name = "course_id")
     private Course Course;
     public Course getCourse() {
         return Course;
@@ -31,7 +31,8 @@ public class Teacher {
     public void setCourse(Course Course) {
         this.Course = Course;
     }
-    //nối xong
+    // nối xong
+    
     @Column(name = "fullname")
     private String fullname;
 
@@ -125,5 +126,5 @@ public class Teacher {
     public void setImageFile(MultipartFile imageFile) {
         this.imageFile = imageFile;
     }
-    
+
 }

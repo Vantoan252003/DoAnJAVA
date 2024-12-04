@@ -71,6 +71,7 @@ public class Course {
         this.lesson = lesson;
     }
     // nối xong
+    
     //nối giảng viên
     @OneToMany(mappedBy = "Course")
     private List<Teacher> teacherS;
