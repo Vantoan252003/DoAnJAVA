@@ -85,7 +85,7 @@
                             <h3 class="text-primary" th:text="${course.title}"></h3>
                             <h4><span class="text-success" th:text="${course.price}"></span></h4>
                             <p><b>Thời lượng:</b> 4 Module</p>
-                            <b>Giảng viên :</b> <p th:text=" ${course.teacherId}" ></p>
+                            <b>Giảng viên :</b> <p th:text=" ${course.teacher.fullname}" ></p>
                             <p><b>Sở hữu khóa học:</b> Trọn đời</p>
                             <div class="row my-4">
                                 <div class="col-lg-5 text-right">
@@ -142,9 +142,24 @@
                     </ul>
                     <div class="tab-content py-4">
                         <div id="description" class="tab-pane active">
-                            <h5 th:text="${course.description}"></h5>
-                            <img class="img-fluid rounded" th:src="'data:image/jpeg;base64,' + ${course.image_url}">
+                            <h2 th:text="${course.title}"></h2>
+                            <p th:text="${course.description}"></p>
+                            <img class="img-fluid rounded" th:src="'data:image/jpeg;base64,' + ${course.image_url}"><br>
+                            <p >Video demo khóa học thử</p>
+                            <div th:if="${firstLesson != null}">
+                                <iframe width="400" height="260" 
+                                        th:src="${firstLesson.videoUrl}" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div th:if="${firstLesson == null}">
+                                <p>Không có video nào để hiển thị.</p>
+                            </div>
+                            
                         </div>
+                        
                     </div>
                 </div>
             </div>
