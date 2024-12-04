@@ -38,6 +38,10 @@ public class CustomUserDetails implements UserDetails{
     public String getImageUrl() {
         return user.getUserImageUrl();
     }
+    public String getEmailUser(){
+        return user.getEmail();
+    }
+
 
     @Override
     public boolean isCredentialsNonExpired() {

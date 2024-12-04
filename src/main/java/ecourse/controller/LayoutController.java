@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
+
 @Controller
 
 public class LayoutController {
@@ -87,4 +88,9 @@ public class LayoutController {
     public String forgotPassword() {
         return "home/forgot-password";
     }
+    @GetMapping("/home/profile")
+    public String profile() {
+        return "home/profile";
+    }
+    
 }

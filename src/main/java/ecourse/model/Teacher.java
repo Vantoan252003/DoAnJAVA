@@ -21,26 +21,16 @@ public class Teacher {
     @Id
     @Column(name = "teacher_id")
     private Short teacherId;
-<<<<<<< HEAD
-    // nối khóa học
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course Course;
-    public Course getCourse() {
-        return Course;
-=======
     //nối course
     @OneToMany(mappedBy = "teacher")
     private List<Course> course;
     public List<Course> getCourse() {
         return course;
->>>>>>> da8fdc22db33a43ebbf9fbedc2106a76538b38ea
     }
     public void setCourse(List<Course> course) {
         this.course = course;
     }
-    // nối xong
-    
+    //nối xong
     @Column(name = "fullname")
     private String fullname;
 
@@ -136,5 +126,5 @@ public class Teacher {
     public void setImageFile(MultipartFile imageFile) {
         this.imageFile = imageFile;
     }
-
+    
 }

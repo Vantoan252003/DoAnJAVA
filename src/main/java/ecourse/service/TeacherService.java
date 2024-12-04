@@ -35,7 +35,6 @@ public class TeacherService {
     }
 
     public void updatTeacher(Teacher teacher) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updatTeacher'");
     }
 }

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="/home/layout">
+
+<head>
+    <meta charset="utf-8">
+    <title>Thông tin cá nhân</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link href="/css/style.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .page-header {
+            background-color: #007bff;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .page-header h3 {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .table {
+            margin-top: 30px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .table th, .table td {
+            text-align: center;
+            padding: 12px;
+        }
+
+        .table th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .team-item img {
+            border-radius: 50%;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .setuptext-all {
+            margin-bottom: 10px;
+        }
+
+        .setuptext-all .text-first {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .setuptext-all .text-last {
+            font-style: italic;
+        }
+
+        .contact-all {
+            margin-top: 20px;
+        }
+
+        .contact_chung-child {
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .contact_chung i {
+            font-size: 24px;
+            color: #007bff;
+            transition: 0.3s ease;
+        }
+
+        .contact_chung i:hover {
+            color: #0056b3;
+        }
+
+        .chitiet-profile a {
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .chitiet-profile a:hover {
+            text-decoration: underline;
+        }
+
+        iframe {
+            width: 100%;
+            height: 315px;
+            border-radius: 8px;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            padding: 15px;
+            display: none;
+        }
+
+        .back-to-top i {
+            font-size: 20px;
+        }
+
+        .back-to-top:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <!-- Header Start -->
+        <div class="container-fluid page-header">
+            <div class="container">
+                <h3 class="text-white text-uppercase">Thông tin cá nhân</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">Thông tin cá nhân</p>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+
+        <!-- User Info Start -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="team-item text-center">
+                        <img class="img-fluid" src="https://th.bing.com/th/id/OIP.7zEjJ1-mOIGjY743NwMLRQHaLG?rs=1&pid=ImgDetMain" alt="User Profile">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    
+                    <div class="setuptext-all">
+                        <span class="text-first">Tên: </span><span class="text-last" sec:authentication="principal.fullname"></span>
+                    </div>
+                    <div class="setuptext-all">
+                        <span class="text-first">Ngày sinh: </span><span class="text-last">07/08/2004</span>
+                    </div>
+                    <div class="setuptext-all">
+                        <span class="text-first">Tuổi: </span><span class="text-last">21</span>
+                    </div>
+                    <div class="setuptext-all">
+                        <span class="text-first">Quê quán: </span><span class="text-last">Nghệ An</span>
+                    </div>
+                    <div class="setuptext-all">
+                        <span class="text-first">Sống tại: </span><span class="text-last">Thành phố Hồ Chí Minh</span>
+                    </div>
+                    <div class="setuptext-all">
+                        <span class="text-first">Học vấn: </span><span class="text-last">Sinh viên năm cuối Đại Học</span>
+                    </div>
+                    <div class="setuptext-all">
+                        <span class="text-first">Khoa: </span><span class="text-last">Công nghệ thông tin</span>
+                    </div>
+                    <div class="setuptext-all">
+                        <span class="text-first">Khóa: </span><span class="text-last">2022-2026</span>
+                    </div>
+                    <hr>
+                    <div class="setuptext-all">
+                        <span class="text-first">Email: </span><span class="text-last" sec:authentication="principal.emailUser"></span>
+                    </div>
+                    <div class="setuptext-all">
+                        <span class="text-first">Phone 1: </span><span class="text-last">05.66666.780</span>
+                    </div>
+                    <div class="setuptext-all">
+                        <span class="text-first">Phone 2: </span><span class="text-last">037.559.5019</span>
+                    </div>
+                    <div class="contact-all">
+                        <h4>Thông tin liên hệ:</h4>
+                        <div class="contact_chung-child">
+                            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                        </div>
+                        <div class="contact_chung-child">
+                            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                        </div>
+                        <div class="contact_chung-child">
+                            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                    <div class="chitiet-profile">
+                        <a href="https://www.topcv.vn" target="_blank">Chi Tiết Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- User Info End -->
+    </div>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- JS Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+</body>
+
+</html>
