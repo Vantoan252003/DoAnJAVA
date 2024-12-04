@@ -1,10 +1,12 @@
 package ecourse.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
 
 import ecourse.model.Lessons;
 
-public interface LessonsRepository extends CrudRepository<Lessons, Short> {
-    
-
+public interface LessonsRepository extends JpaRepository<Lessons, Short> {
+    List<Lessons> findByCourse_CourseId(Short courseId);
 }

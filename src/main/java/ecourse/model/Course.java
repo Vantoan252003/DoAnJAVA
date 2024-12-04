@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Transient;
@@ -27,18 +29,18 @@ public class Course {
     private Date createdAt;
     @Column(name = "description")
     private String description;
-    @Column(name = "teacher_id")
-    private short teacherId;
+    // @Column(name = "teacher_id")
+    // private short teacherId;
     @Column(name = "image_url")
     private String image_url;
     @Transient
     private MultipartFile imageFile;
-    public short getTeacherId() {
-        return teacherId;
-    }
-    public void setTeacherId(short teacherId) {
-        this.teacherId = teacherId;
-    }
+    // public short getTeacherId() {
+    //     return teacherId;
+    // }
+    // public void setTeacherId(short teacherId) {
+    //     this.teacherId = teacherId;
+    // }
     public List<Enrollments> getEnrollM() {
         return enrollM;
     }
@@ -62,7 +64,7 @@ public class Course {
     //nối xong
 
     //nối tiếp
-    @OneToMany(mappedBy = "Course")
+    @OneToMany(mappedBy = "course")
     private List<Lessons> lesson;
     public List<Lessons> getLessonM(){
         return lesson;
@@ -71,14 +73,16 @@ public class Course {
         this.lesson = lesson;
     }
     // nối xong
+
     //nối giảng viên
-    @OneToMany(mappedBy = "Course")
-    private List<Teacher> teacherS;
-    public List<Teacher> getTeacher(){
-        return teacherS;
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
+    public Teacher getTeacher() {
+        return teacher;
     }
-    public void setTeacher(List <Teacher> teacherS){
-        this.teacherS = teacherS;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
     //nối xong
     public short getCourseId() {

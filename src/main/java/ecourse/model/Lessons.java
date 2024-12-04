@@ -34,12 +34,14 @@ public class Lessons {
     //nối khóa học
     @ManyToOne
     @JoinColumn(name = "course_id")
-    public Course Course;
+    private Course course;
+
     public Course getCourse() {
-        return Course;
+        return course;
     }
-    public void setCourse(Course Course) {
-        this.Course = Course;
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
     //nối xong
     public short getLessonId() {

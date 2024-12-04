@@ -2,6 +2,7 @@ package ecourse.model;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,8 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Transient;
 
@@ -21,15 +21,14 @@ public class Teacher {
     @Id
     @Column(name = "teacher_id")
     private Short teacherId;
-  // nối khóa học
-    @ManyToOne
-    @JoinColumn(name ="course_id")
-    private Course Course;
-    public Course getCourse() {
-        return Course;
+    //nối course
+    @OneToMany(mappedBy = "teacher")
+    private List<Course> course;
+    public List<Course> getCourse() {
+        return course;
     }
-    public void setCourse(Course Course) {
-        this.Course = Course;
+    public void setCourse(List<Course> course) {
+        this.course = course;
     }
     //nối xong
     @Column(name = "fullname")
@@ -38,6 +37,7 @@ public class Teacher {
     @Column(name = "email")
     private String email;
 
+   
     @Column(name = "password")
     private String password;
 
@@ -73,6 +73,7 @@ public class Teacher {
     public String getEmail() {
         return email;
     }
+ 
 
     public void setEmail(String email) {
         this.email = email;
