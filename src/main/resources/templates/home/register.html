@@ -35,10 +35,12 @@
                     </div>
                     <div class="col-lg-7">
                         <div class="p-5">
-                            <th:block th:if="${session.msg}">
-                            <p class="text text-center btn-danger"  >[[${session.msg}]]</p>
-            
-                            </th:block>
+                            <div th:if = "${param.error}" class="alert alert-danger">
+                                Email đã tồn tại!
+                            </div>
+                            <div th:if ="${param.success}" class="alert alert-success">
+                                Đăng ký thành công!
+                            </div>
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Tạo tài khoản</h1>
                             </div>

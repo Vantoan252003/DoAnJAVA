@@ -50,11 +50,11 @@
                     <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Giảng viên</h5>
                     <h1>Gặp gỡ giảng viên của chúng tôi</h1>
                 </div>
-                <div class="row">
+                <div class="row" th:each="o: ${teacher}">
                     <div class="col-md-6 col-lg-3 text-center team mb-4">
                         <div class="team-item rounded overflow-hidden mb-2">
                             <div class="team-img position-relative">
-                                <img class="img-fluid" src="https://th.bing.com/th/id/OIP.7zEjJ1-mOIGjY743NwMLRQHaLG?rs=1&pid=ImgDetMain" alt="" style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover;">
+                                <img class="img-fluid" th:src="'data:image/jpeg;base64,' + ${o.imageUrl}" alt="" style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover;">
                                 <div class="team-social">
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -62,8 +62,8 @@
                                 </div>
                             </div>
                             <div class="bg-secondary p-4">
-                                <h5>Nguyễn Tấn Hoàng</h5>
-                                <p class="m-0">Kỹ sư phần mềm</p>
+                                <h5 th:text ="${o.fullname}"></h5>
+                                <p class="m-0" th:text="${o.specialty}"></p>
                             </div>
                         </div>
                     </div>
