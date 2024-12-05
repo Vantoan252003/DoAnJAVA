@@ -86,7 +86,7 @@ public class UserController {
             return "Người dùng không tồn tại!";
         }
         
-        // Cập nhật tên người dùng và lưu lại
+        // Cập nhật tên người dùng và lưu lạgiti
         username.setFullname(fullname);
         userService.save(username);
         
