@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import ecourse.model.UserClass;
 import ecourse.repository.CourseRepository;
+import ecourse.repository.TeacherRepository;
 import ecourse.service.UserInterface;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.PostMapping;
+
+
 
 @Controller
 
@@ -20,6 +23,8 @@ public class LayoutController {
     CourseRepository courseRepository;
     @Autowired
     private UserInterface userService;
+    @Autowired
+    private TeacherRepository teacherRepository;
 
     @GetMapping("/home/course")
     public String course(Model model) {
@@ -53,7 +58,8 @@ public class LayoutController {
     }
 
     @GetMapping("/home/teacher")
-    public String teacher() {
+    public String teacher(Model model) {
+        model.addAttribute("teacher", teacherRepository.findAll());
         return "home/teacher";
     }
 
@@ -87,4 +93,5 @@ public class LayoutController {
     public String forgotPassword() {
         return "home/forgot-password";
     }
+    
 }
