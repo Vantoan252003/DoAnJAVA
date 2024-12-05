@@ -35,10 +35,6 @@ public class LayoutController {
         return "home/index";
     }
 
-    @GetMapping("/home/contact")
-    public String contact() {
-        return "home/contact";
-    }
 
     @GetMapping("/home/about")
     public String about() {
