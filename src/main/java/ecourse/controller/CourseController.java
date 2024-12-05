@@ -74,7 +74,6 @@ public class CourseController {
     public String detailCourse(@PathVariable("courseId") short courseId, Model model) {
         Course course = courseRepository.findById(courseId).orElse(null);
         model.addAttribute("course", course);
-
         List<Lessons> lessons = lessonsRepository.findByCourse_CourseId(courseId); // Cần có method này
         model.addAttribute("lessons", lessons);
         Lessons firstLesson = lessons.isEmpty() ? null : lessons.get(0);

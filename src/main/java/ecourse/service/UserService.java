@@ -32,4 +32,13 @@ public class UserService {
         }
         userRepository.save(userClass);
     }
+    // Tìm người dùng theo email
+    public UserClass findByUsername(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    // Lưu người dùng
+    public void save(UserClass user) {
+        userRepository.save(user);
+    }
 }
