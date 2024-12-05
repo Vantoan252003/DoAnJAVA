@@ -42,7 +42,6 @@ public class CustomUserDetails implements UserDetails{
         return user.getEmail();
     }
 
-
     @Override
     public boolean isCredentialsNonExpired() {
     
@@ -66,6 +65,4 @@ public class CustomUserDetails implements UserDetails{
      
         return true;
     }
-    
-    
 }
