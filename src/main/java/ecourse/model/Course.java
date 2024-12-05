@@ -73,7 +73,6 @@ public class Course {
         this.lesson = lesson;
     }
     // nối xong
-
     //nối giảng viên
     @ManyToOne
     @JoinColumn(name = "teacher_id")
