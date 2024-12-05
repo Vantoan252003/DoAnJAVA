@@ -23,6 +23,7 @@
 
     <!-- Custom Styles -->
     <link href="/css/style.css" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -52,7 +53,8 @@
             background-color: #fff;
         }
 
-        .table th, .table td {
+        .table th,
+        .table td {
             text-align: center;
             padding: 12px;
         }
@@ -142,6 +144,53 @@
             background-color: #0056b3;
         }
     </style>
+
+    <!-- JS Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Thêm đoạn script xử lý đổi tên -->
+    <script>
+        // Hàm hiển thị form đổi tên
+        function showPwdEdit() {
+            document.getElementById('nameEditForm').style.display = 'block';
+            document.querySelector('.setuptext-all a').style.display = 'none'; // Ẩn nút Đổi Tên
+        }
+
+        // Hàm hủy việc thay đổi tên
+        function cancelEdit() {
+            document.getElementById('nameEditForm').style.display = 'none';
+            document.querySelector('.setuptext-all a').style.display = 'inline-block'; // Hiển thị lại nút Đổi Tên
+        }
+
+        // Hàm thực hiện thay đổi tên
+        function changeName() {
+            const newName = document.getElementById('newName').value;
+
+            if (newName.trim() === "") {
+                alert("Tên không được để trống.");
+                return;
+            }
+
+            // Gửi yêu cầu AJAX hoặc cập nhật tên trực tiếp (tùy vào cách bạn muốn xử lý phía server)
+            // Ví dụ AJAX:
+            $.ajax({
+                url: '/change-name', // Thay bằng URL thực tế trên server
+                type: 'POST',
+                data: { fullname: newName },
+                success: function (response) {
+                    // Cập nhật giao diện nếu thay đổi thành công
+                    document.getElementById('fullnameDisplay').textContent = newName;
+                    cancelEdit(); // Đóng form đổi tên
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra khi thay đổi tên.");
+                }
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -164,74 +213,74 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="team-item text-center">
-                        <img class="img-fluid" src="https://th.bing.com/th/id/OIP.7zEjJ1-mOIGjY743NwMLRQHaLG?rs=1&pid=ImgDetMain" alt="User Profile">
+                        <img class="img-fluid"
+                            src="https://th.bing.com/th/id/OIP.7zEjJ1-mOIGjY743NwMLRQHaLG?rs=1&pid=ImgDetMain"
+                            alt="User Profile">
                     </div>
                 </div>
                 <div class="col-md-8">
-                    
+
                     <div class="setuptext-all">
-                        <span class="text-first">Tên: </span><span class="text-last" sec:authentication="principal.fullname"></span>
-                    </div>
-                    <div class="setuptext-all">
-                        <span class="text-first">Ngày sinh: </span><span class="text-last">07/08/2004</span>
-                    </div>
-                    <div class="setuptext-all">
-                        <span class="text-first">Tuổi: </span><span class="text-last">21</span>
-                    </div>
-                    <div class="setuptext-all">
-                        <span class="text-first">Quê quán: </span><span class="text-last">Nghệ An</span>
-                    </div>
-                    <div class="setuptext-all">
-                        <span class="text-first">Sống tại: </span><span class="text-last">Thành phố Hồ Chí Minh</span>
-                    </div>
-                    <div class="setuptext-all">
-                        <span class="text-first">Học vấn: </span><span class="text-last">Sinh viên năm cuối Đại Học</span>
-                    </div>
-                    <div class="setuptext-all">
-                        <span class="text-first">Khoa: </span><span class="text-last">Công nghệ thông tin</span>
-                    </div>
-                    <div class="setuptext-all">
-                        <span class="text-first">Khóa: </span><span class="text-last">2022-2026</span>
-                    </div>
-                    <hr>
-                    <div class="setuptext-all">
-                        <span class="text-first">Email: </span><span class="text-last" sec:authentication="principal.emailUser"></span>
-                    </div>
-                    <div class="setuptext-all">
-                        <span class="text-first">Phone 1: </span><span class="text-last">05.66666.780</span>
-                    </div>
-                    <div class="setuptext-all">
-                        <span class="text-first">Phone 2: </span><span class="text-last">037.559.5019</span>
-                    </div>
-                    <div class="contact-all">
-                        <h4>Thông tin liên hệ:</h4>
-                        <div class="contact_chung-child">
-                            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <span class="text-first">Tên: </span><span class="text-last"
+                            sec:authentication="principal.fullname"></span>
+                        <span class="text-last" id="fullnameDisplay"></span>
+                        <a href="javascript:void(0)" onclick="showPwdEdit()">Đổi Tên</a>
+                        <!-- Form đổi tên -->
+                        <div id="nameEditForm" style="display: none;">
+                            <div class="setuptext-all">
+                                <label for="newName" class="text-first">Tên mới: </label>
+                                <input type="text" id="newName" class="form-control" placeholder="Nhập tên mới">
+                            </div>
+                            <div class="setuptext-all">
+                                <button type="button" class="btn btn-primary" onclick="changeName()">Lưu</button>
+                                <button type="button" class="btn btn-secondary" onclick="cancelEdit()">Hủy</button>
+                            </div>
                         </div>
-                        <div class="contact_chung-child">
-                            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-                        </div>
-                        <div class="contact_chung-child">
-                            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
-                        </div>
+
                     </div>
-                    <div class="chitiet-profile">
-                        <a href="https://www.topcv.vn" target="_blank">Chi Tiết Profile</a>
+                    <div class="setuptext-all">
+                        <span class="text-first">Tên đăng nhập: </span><span class="text-last"
+                            sec:authentication="principal.Username"></span>
+                    </div>
+                    <div class="setuptext-all">
+                        <span class="text-first">Mật khẩu: </span><span class="text-last"
+                            sec:authentication="principal.Password"></span>
+                    </div>
+                    <div class="setuptext-all">
+                        <span class="text-first">Ảnh </span>
+                        <div class="text-last">
+                            <a href="#">Thay đổi ảnh đại diện</a>
+                        </div>
+                        <hr>
+                        <div class="setuptext-all">
+                            <span class="text-first">Email: </span><span class="text-last"
+                                sec:authentication="principal.emailUser"></span>
+                        </div>
+                        <div class="contact-all">
+                            <h4>Thông tin liên hệ:</h4>
+                            <div class="contact_chung-child">
+                                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                            </div>
+                            <div class="contact_chung-child">
+                                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                            </div>
+                            <div class="contact_chung-child">
+                                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                        <div class="chitiet-profile">
+                            <a href="https://www.topcv.vn" target="_blank">Chi Tiết Profile</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- User Info End -->
+
+        <div class="back-to-top" id="back-to-top">
+            <i class="fa fa-arrow-up"></i>
+        </div>
     </div>
-
-    <!-- Back to Top Button -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-    <!-- JS Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 </body>
 
 </html>
