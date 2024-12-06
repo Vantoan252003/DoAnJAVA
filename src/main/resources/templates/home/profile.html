@@ -69,12 +69,7 @@
             background-color: #f1f1f1;
         }
 
-        .team-item img {
-            border-radius: 50%;
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
+       
 
         .setuptext-all {
             margin-bottom: 10px;
@@ -212,14 +207,14 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="team-item text-center">
-                        <img class="img-fluid"
-                            src="https://th.bing.com/th/id/OIP.7zEjJ1-mOIGjY743NwMLRQHaLG?rs=1&pid=ImgDetMain"
-                            alt="User Profile">
+                        <img style="width: 400px; height: 400px; "
+                                            th:src="'data:image/jpeg;base64,' + ${#authentication.principal.imageUrl}"
+                                            alt="Ảnh người dùng" width="80">
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-4" style="margin-left :40px">
 
-                    <div class="setuptext-all">
+                    <div class="setuptext-all" >
                         <span class="text-first">Tên: </span><span class="text-last"
                             sec:authentication="principal.fullname"></span>
                         <span class="text-last" id="fullnameDisplay"></span>
