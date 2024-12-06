@@ -13,15 +13,18 @@ import ecourse.repository.UserRepository;
 
 @Controller
 public class AdminController {
-@Autowired UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
+
     @ModelAttribute
-    private void userDetails(Model m, Principal p){
+    private void userDetails(Model m, Principal p) {
         String email = p.getName();
         UserClass user = userRepository.findByEmail(email);
         m.addAttribute("user", user);
     }
-@GetMapping("/admin")
-public String trueAdmin() {
-return "admin/index";
-}
+
+    @GetMapping("/admin")
+    public String trueAdmin() {
+        return "admin/index";
+    }
 }
