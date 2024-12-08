@@ -24,6 +24,7 @@ public class UserService {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            
         } else {
             UserClass existingCourse = userRepository.findById(userClass.getUserId()).orElse(null);
             if (existingCourse != null) {

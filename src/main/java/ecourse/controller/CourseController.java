@@ -74,10 +74,19 @@ public class CourseController {
     public String detailCourse(@PathVariable("courseId") short courseId, Model model) {
         Course course = courseRepository.findById(courseId).orElse(null);
         model.addAttribute("course", course);
-        List<Lessons> lessons = lessonsRepository.findByCourse_CourseId(courseId); // Cần có method này
+    
+        // Lấy danh sách lessons và xử lý URL video
+        List<Lessons> lessons = lessonsRepository.findByCourse_CourseId(courseId);
+        lessons.forEach(lesson -> {
+            String videoUrl = lesson.getVideoUrl();
+            if (videoUrl != null && videoUrl.contains("watch?v=")) {
+                lesson.setVideoUrl(videoUrl.replace("watch?v=", "embed/")); // Thay thế "watch?v=" bằng "embed/"
+            }
+        });
         model.addAttribute("lessons", lessons);
         Lessons firstLesson = lessons.isEmpty() ? null : lessons.get(0);
         model.addAttribute("firstLesson", firstLesson);
+    
         model.addAttribute("teacher", teacherRepository.findAll());
         return "home/detailCourse";
     }

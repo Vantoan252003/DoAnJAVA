@@ -129,14 +129,20 @@
                                     nhập</a>
                             </div>
                             <div sec:authorize="isAuthenticated()">
-
-                                <div class="dropdown">
-                                    <a class=" px-4 ml-auto d-none d-lg-block" href="#" id="userDropdown" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="dropdown d-flex align-items-center">
+                                    <!-- Avatar -->
+                                    <a class="px-4" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <img class="rounded-circle" style="width: 50px; height: 50px;"
                                             th:src="'data:image/jpeg;base64,' + ${#authentication.principal.imageUrl}"
-                                            alt="Ảnh người dùng" width="100">
+                                            alt="Ảnh người dùng">
                                     </a>
+                                    
+                                    <!-- Giỏ hàng -->
+                                    <a class="ml-2" href="/home/cart">
+                                        <i class="fa fa-2x fa-shopping-cart"></i>
+                                    </a>
+                            
+                                    <!-- Dropdown menu -->
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                         aria-labelledby="userDropdown">
                                         <a class="dropdown-item" href="/home/profile">
@@ -161,7 +167,7 @@
     <!-- Navbar End -->
 
     <div layout:fragment="content">
-
+<!-- trang wweb hiển thị đây -->
     </div>
 
 

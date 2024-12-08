@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="/admin/layoutAdmin">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang quản trị</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container mt-5">
+            <h2 class="mb-4 text-center     ">Đóng góp, ý kiến người dùng</h2>
+            <div class="row justify-content-center">
+                <!-- Vòng lặp qua danh sách -->
+                <div class="col-md-8 mb-4" th:each="o : ${list}">
+                    <div class="card shadow-lg border-0" style="border-radius: 10px;">
+                        <div class="card-header bg-primary text-white" style="border-radius: 10px 10px 0 0;">
+                            <h5 class="card-title mb-0">Họ và tên: <span th:text="${o.fullname}"></span></h5>
+                        </div>
+                        <div class="card-body bg-light">
+                            <p class="card-text"><strong>Email:</strong> <span th:text="${o.email}"></span></p>
+                            <p class="card-text"><strong>Khóa học:</strong> <span th:text="${o.course}"></span></p>
+                            <p class="card-text"><strong>Số điện thoại:</strong> <span th:text="${o.phoneNumber}"></span></p>
+                            <p class="card-text"><strong>Tin nhắn:</strong> <span th:text="${o.message}"></span></p>
+                            <p class="card-text"><strong>Ngày gửi:</strong> <span th:text="${o.submittedAt}"></span></p>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-end">
+                            <a href="https://mail.google.com/mail/u/0/#inbox?compose=new" class="btn btn-sm btn-outline-primary me-2">Trả lời</a>
+                            <a th:href="@{/admin/messages/delete/{id}(id=${o.id})}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Muốn xóa phản hồi này ?')">Xóa</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html></div></table></div></li></ul></div></nav></div></html>

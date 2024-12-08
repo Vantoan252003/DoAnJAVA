@@ -69,7 +69,7 @@
             background-color: #f1f1f1;
         }
 
-       
+
 
         .setuptext-all {
             margin-bottom: 10px;
@@ -204,17 +204,27 @@
 
         <!-- User Info Start -->
         <div class="container">
+           <form method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="team-item text-center">
-                        <img style="width: 400px; height: 400px; "
-                                            th:src="'data:image/jpeg;base64,' + ${#authentication.principal.imageUrl}"
-                                            alt="Ảnh người dùng" width="80">
+                    <div class="card border-radius">
+                        <div class="card-body">
+                            <div class="team-item text-center">
+                                <img class="img-fluid w-100 h-100"
+                                    th:src="'data:image/jpeg;base64,' + ${#authentication.principal.imageUrl}"
+                                    alt="Ảnh người dùng" width="80">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <a href="#">Thay đổi ảnh đại diện</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4" style="margin-left :40px">
 
-                    <div class="setuptext-all" >
+                    <div class="setuptext-all">
                         <span class="text-first">Tên: </span><span class="text-last"
                             sec:authentication="principal.fullname"></span>
                         <span class="text-last" id="fullnameDisplay"></span>
@@ -237,15 +247,10 @@
                             sec:authentication="principal.Username"></span>
                     </div>
                     <div class="setuptext-all">
-                        <span class="text-first">Mật khẩu: </span><span class="text-last"
-                            sec:authentication="principal.Password"></span>
+                        <span class="text-first">Thay mật khẩu:  </span><span class="text-last"></span>
+                        <a href="/home/change-password">Thay đổi</a>
                     </div>
                     <div class="setuptext-all">
-                        <span class="text-first">Ảnh </span>
-                        <div class="text-last">
-                            <a href="#">Thay đổi ảnh đại diện</a>
-                        </div>
-                        <hr>
                         <div class="setuptext-all">
                             <span class="text-first">Email: </span><span class="text-last"
                                 sec:authentication="principal.emailUser"></span>
@@ -265,9 +270,13 @@
                         <div class="chitiet-profile">
                             <a href="https://www.topcv.vn" target="_blank">Chi Tiết Profile</a>
                         </div>
+                        <hr>
+                        <button class="btn btn-primary">Lưu</button>
+                        <a href="/home/index" class="btn btn-secondary">Hủy</a>
                     </div>
                 </div>
             </div>
+           </form>
         </div>
         <!-- User Info End -->
 

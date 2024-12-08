@@ -1,10 +1,6 @@
 package ecourse.model;
 
-
-
-import java.time.LocalDate;
-import java.sql.Date;
-
+import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,53 +25,68 @@ public class Contact {
     @Column(name = "message")
     private String message;
     @Column(name = "submitted_at", nullable = true)
-    private Date submittedAt;
+    private LocalDateTime submittedAt;
+
     public short getId() {
         return id;
     }
+
     public void setId(short id) {
         this.id = id;
     }
+
     public String getFullname() {
         return fullname;
     }
+
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getCourse() {
         return course;
     }
+
     public void setCourse(String course) {
         this.course = course;
     }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
     public String getMessage() {
         return message;
     }
+
     public void setMessage(String message) {
         this.message = message;
     }
-    public Date getSubmittedAt() {
+
+    public LocalDateTime getSubmittedAt() {
         return submittedAt;
     }
-    public void setSubmittedAt(Date submittedAt) {
+
+    public void setSubmittedAt(LocalDateTime submittedAt) {
         this.submittedAt = submittedAt;
     }
-     @PrePersist
+
+    @PrePersist
     protected void onCreate() {
         if (this.submittedAt == null) {
-            this.submittedAt = Date.valueOf(LocalDate.now());
+            this.submittedAt = LocalDateTime.now();
         }
     }
 }
