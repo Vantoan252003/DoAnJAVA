@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import ecourse.model.UserClass;
 
-public class CustomUserDetails implements UserDetails{
+public class CustomUserDetails implements UserDetails {
     private UserClass user;
 
     public CustomUserDetails(UserClass user) {
@@ -24,7 +24,7 @@ public class CustomUserDetails implements UserDetails{
 
     @Override
     public String getPassword() {
-    
+
         return user.getPassword();
     }
 
@@ -32,37 +32,41 @@ public class CustomUserDetails implements UserDetails{
     public String getUsername() {
         return user.getEmail();
     }
+
     public String getFullname() {
         return user.getFullname();
     }
+
     public String getImageUrl() {
         return user.getUserImageUrl();
     }
-    public String getEmailUser(){
+
+    public String getEmailUser() {
         return user.getEmail();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-    
+
         return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-      
+
         return true;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-   
+
         return true;
     }
 
     @Override
     public boolean isEnabled() {
-     
+
         return true;
     }
 }
+

@@ -4,9 +4,8 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
-
-
 import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -18,6 +17,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Transient;
 import lombok.Data;
+
 @Data
 @Entity(name = "users")
 public class UserClass {
@@ -35,7 +35,7 @@ public class UserClass {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "created_at",nullable = true)
+    @Column(name = "created_at", nullable = true)
     private Date createdAt;
     @Enumerated(EnumType.STRING) // Ánh xạ enum thành chuỗi (ADMIN, SUPERADMIN)
     @Column(name = "role")
@@ -46,31 +46,39 @@ public class UserClass {
     private String userImageUrl;
     @Column(name = "fullname")
     private String fullname;
-    //nối phiếu học
+    // nối phiếu học
     @OneToMany(mappedBy = "Clazz")
     private List<Enrollments> enroll;
-    public List<Enrollments> getEnoll(){
+
+    public List<Enrollments> getEnoll() {
         return enroll;
     }
-    public void setEnroll(List <Enrollments> enroll){
+
+    public void setEnroll(List<Enrollments> enroll) {
         this.enroll = enroll;
     }
-    //nối xong
+
+    // nối xong
     public MultipartFile getImageFile() {
         return imageFile;
     }
+
     public void setImageFile(MultipartFile imageFile) {
         this.imageFile = imageFile;
     }
+
     public Role getRole() {
         return role;
     }
+
     public void setRole(Role role) {
         this.role = role;
     }
+
     public List<Enrollments> getEnroll() {
         return enroll;
     }
+
     @Transient
     private MultipartFile userImage;
 
@@ -126,15 +134,19 @@ public class UserClass {
     public MultipartFile getUserImage() {
         return userImage;
     }
+
     public void setUserImage(MultipartFile userImage) {
         this.userImage = userImage;
     }
+
     public String getFullname() {
         return fullname;
     }
+
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
+
     @PrePersist
     protected void onCreate() {
         if (this.createdAt == null) {
@@ -144,5 +156,31 @@ public class UserClass {
             this.role = Role.user; // Thiết lập giá trị mặc định cho role là USER
         }
     }
-  
+
+    public void setImageUrl(String imageUrl) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setImageUrl'");
+    }
+
+    public String getImageUrl() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getImageUrl'");
+    }
+
+    // @Service
+    // public class UserService {
+
+    //     @Autowired
+    //     private UserRepository userRepository;
+
+    //     @Transactional
+    //     public void updateFullname(String username, String fullname) {
+    //         UserClass user = userRepository.findByUsername(username);
+    //         if (user != null) {
+    //             user.setFullname(fullname);
+    //             userRepository.save(user);
+    //         }
+    //     }
+    // }
+
 }

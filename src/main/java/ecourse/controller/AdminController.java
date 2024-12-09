@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import ecourse.model.UserClass;
 import ecourse.repository.ContactRepository;
 import ecourse.repository.UserRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 

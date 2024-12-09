@@ -171,18 +171,24 @@
 
             // Gửi yêu cầu AJAX hoặc cập nhật tên trực tiếp 
             $.ajax({
-                url: '/change-name', // Thay bằng URL thực tế trên server
+                url: '/home/profile', // Thay bằng URL thực tế trên server
                 type: 'POST',
                 data: { fullname: newName },
                 success: function (response) {
                     // Cập nhật giao diện nếu thay đổi thành công
-                    document.getElementById('fullnameDisplay').textContent = newName;
+                    document.getElementById('fullnameDisplay').textContent = newName;  // Thay thế tên cũ bằng tên mới
                     cancelEdit(); // Đóng form đổi tên
                 },
                 error: function () {
-                    alert("Có lỗi xảy ra khi thay đổi tên.");
+                    alert("Đăng xuất để cập nhật tên.");
                 }
             });
+            function cancelEdit() {
+                var editForm = document.getElementById('editForm');
+                if (editForm) {
+                    editForm.style.display = 'none'; // Ẩn form chỉnh sửa
+                }
+            }
         }
     </script>
 </head>
@@ -204,79 +210,120 @@
 
         <!-- User Info Start -->
         <div class="container">
-           <form method="post" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card border-radius">
-                        <div class="card-body">
-                            <div class="team-item text-center">
-                                <img class="img-fluid w-100 h-100"
-                                    th:src="'data:image/jpeg;base64,' + ${#authentication.principal.imageUrl}"
-                                    alt="Ảnh người dùng" width="80">
+            <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card border-radius">
+                            <div class="card-body">
+                                <div class="team-item text-center">
+                                    <img class="img-fluid w-100 h-100"
+                                        th:src="'data:image/jpeg;base64,' + ${#authentication.principal.imageUrl}"
+                                        alt="Ảnh người dùng" width="80">
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="text-center">
-                                <a href="#">Thay đổi ảnh đại diện</a>
+                            <div class="card-footer">
+                                <div class="profile-container">
+                                    <!-- Form cập nhật ảnh đại diện -->
+                                    <form id="avatar-form" enctype="multipart/form-data">
+                                        <label for="newAvatar" class="text-first">Chọn ảnh mới: </label>
+                                        <input type="file" id="avatar-input" name="avatar" accept="image/*" required />
+                                        <button type="button" id="update-avatar-button">Cập nhật ảnh đại diện</button>
+                                    </form>
+                                </div>
+                                <script>
+                                    // JavaScript để xử lý upload ảnh và gửi yêu cầu AJAX
+                                    $(document).ready(function() {
+                                        // Khi người dùng bấm nút "Cập nhật ảnh đại diện"
+                                        $('#update-avatar-button').click(function() {
+                                            var formData = new FormData();
+                                            var fileInput = $('#avatar-input')[0].files[0];
+                            
+                                            if (!fileInput) {
+                                                alert("Vui lòng chọn một ảnh.");
+                                                return;
+                                            }
+                            
+                                            // Thêm file vào formData
+                                            formData.append("avatar", fileInput);
+                            
+                                            // Gửi yêu cầu AJAX tới server
+                                            $.ajax({
+                                                url: '/profile/update-avatar',  // API backend để xử lý upload
+                                                type: 'POST',
+                                                data: formData,
+                                                contentType: false,  // Không gửi tiêu đề Content-Type vì đây là form data
+                                                processData: false,  // Không cần xử lý dữ liệu, jQuery sẽ làm điều đó
+                                                success: function(response) {
+                                                    alert("Cập nhật ảnh đại diện thành công!");
+                            
+                                                    // Cập nhật ảnh đại diện trên giao diện người dùng
+                                                    $('#user-avatar').attr('src', response.newImageUrl);  // Cập nhật đường dẫn ảnh mới
+                                                },
+                                                error: function() {
+                                                    alert("Lỗi khi cập nhật ảnh đại diện.");
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4" style="margin-left :40px">
+                    <div class="col-md-4" style="margin-left :40px">
 
-                    <div class="setuptext-all">
-                        <span class="text-first">Tên: </span><span class="text-last"
-                            sec:authentication="principal.fullname"></span>
-                        <span class="text-last" id="fullnameDisplay"></span>
-                        <a href="javascript:void(0)" onclick="showPwdEdit()">Đổi Tên</a>
-                        <!-- Form đổi tên -->
-                        <div id="nameEditForm" style="display: none;">
-                            <div class="setuptext-all">
-                                <label for="newName" class="text-first">Tên mới: </label>
-                                <input type="text" id="newName" class="form-control" placeholder="Nhập tên mới">
-                            </div>
-                            <div class="setuptext-all">
-                                <button type="button" class="btn btn-primary" onclick="changeName()">Lưu</button>
-                                <button type="button" class="btn btn-secondary" onclick="cancelEdit()">Hủy</button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="setuptext-all">
-                        <span class="text-first">Tên đăng nhập: </span><span class="text-last"
-                            sec:authentication="principal.Username"></span>
-                    </div>
-                    <div class="setuptext-all">
-                        <span class="text-first">Thay mật khẩu:  </span><span class="text-last"></span>
-                        <a href="/home/change-password">Thay đổi</a>
-                    </div>
-                    <div class="setuptext-all">
                         <div class="setuptext-all">
-                            <span class="text-first">Email: </span><span class="text-last"
-                                sec:authentication="principal.emailUser"></span>
-                        </div>
-                        <div class="contact-all">
-                            <h4>Thông tin liên hệ:</h4>
-                            <div class="contact_chung-child">
-                                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <span class="text-first">Tên: </span><span class="text-last"
+                                sec:authentication="principal.fullname"></span>
+                            <span class="text-last" id="fullnameDisplay"></span>
+                            <a href="javascript:void(0)" onclick="showPwdEdit()">Đổi Tên</a>
+                            <!-- Form đổi tên -->
+                            <div id="nameEditForm" style="display: none;">
+                                <div class="setuptext-all">
+                                    <label for="newName" class="text-first">Tên mới: </label>
+                                    <input type="text" id="newName" class="form-control" placeholder="Nhập tên mới">
+                                </div>
+                                <div class="setuptext-all">
+                                    <button type="button" class="btn btn-primary" onclick="changeName()">Lưu</button>
+                                    <button type="button" class="btn btn-secondary" onclick="cancelEdit()">Hủy</button>
+                                </div>
                             </div>
-                            <div class="contact_chung-child">
-                                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-                            </div>
-                            <div class="contact_chung-child">
-                                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
-                            </div>
+
                         </div>
-                        <div class="chitiet-profile">
-                            <a href="https://www.topcv.vn" target="_blank">Chi Tiết Profile</a>
+                        <div class="setuptext-all">
+                            <span class="text-first">Tên đăng nhập: </span><span class="text-last"
+                                sec:authentication="principal.Username"></span>
                         </div>
-                        <hr>
-                        <button class="btn btn-primary">Lưu</button>
-                        <a href="/home/index" class="btn btn-secondary">Hủy</a>
+                        <div class="setuptext-all">
+                            <span class="text-first">Thay mật khẩu: </span><span class="text-last"></span>
+                            <a href="/home/change-password">Thay đổi</a>
+                        </div>
+                        <div class="setuptext-all">
+                            <div class="setuptext-all">
+                                <span class="text-first">Email: </span><span class="text-last"
+                                    sec:authentication="principal.emailUser"></span>
+                            </div>
+                            <div class="contact-all">
+                                <h4>Thông tin liên hệ:</h4>
+                                <div class="contact_chung-child">
+                                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                                </div>
+                                <div class="contact_chung-child">
+                                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                                </div>
+                                <div class="contact_chung-child">
+                                    <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+                                </div>
+                            </div>
+                            <div class="chitiet-profile">
+                                <a href="https://www.topcv.vn" target="_blank">Chi Tiết Profile</a>
+                            </div>
+                            <hr>
+                            <button class="btn btn-primary">Lưu</button>
+                            <a href="/home/index" class="btn btn-secondary">Hủy</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-           </form>
+            </form>
         </div>
         <!-- User Info End -->
 

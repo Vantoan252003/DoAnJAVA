@@ -19,6 +19,7 @@ import ecourse.service.UserService;
 
 @Controller
 public class UserController {
+
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -50,7 +51,6 @@ public class UserController {
     @GetMapping("/admin/user/edit/{userId}")
     public String edit(@PathVariable("userId") short userId, Model model) {
         UserClass user = userRepository.findById(userId).orElse(null);
-        // It's not possible to decode a BCrypt password. Instead, you should leave the password field empty.
         user.setPassword("");
         model.addAttribute("user", user);
         model.addAttribute("roles", Role.values());
@@ -75,22 +75,62 @@ public class UserController {
         return "redirect:/admin/user";
     }
 
-    @PostMapping("/change-name")
-    public String changeName(@RequestParam("fullname") String fullname) {
-        // Lấy thông tin người dùng hiện tại
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName(); // Lấy email người dùng hiện tại
+    // @PostMapping("/home/profile")
+    // public String changeName(@RequestParam("fullname") String fullname) {
+    // // Lấy thông tin người dùng hiện tại
+    // Authentication authentication =
+    // SecurityContextHolder.getContext().getAuthentication();
+    // String email = authentication.getName(); // Lấy email người dùng hiện tại
 
-        // Tìm người dùng trong cơ sở dữ liệu
-        UserClass username = userService.findByUsername(email);
-        if (username == null) {
-            return "Người dùng không tồn tại!";
+    // // Tìm người dùng trong cơ sở dữ liệu
+    // UserClass username = userService.findByUsername(email);
+    // if (username == null) {
+    // return "Người dùng không tồn tại!";
+    // }
+
+    // // Cập nhật tên người dùng và lưu lại
+    // username.setFullname(fullname);
+    // userService.save(username);
+    // return "Tên đã được cập nhật!";
+    // }
+
+    // public String updateFullname(@RequestParam String fullname) {
+    // String username = getCurrentUsername();
+    // userService.updateFullname(username, fullname);
+    // return "Fullname updated successfully!";
+    // }
+
+    // private String getCurrentUsername() {
+    // Object principal =
+    // SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    // if (principal instanceof UserDetails) {
+    // return ((UserDetails) principal).getUsername();
+    // } else {
+    // return principal.toString();
+    // }
+    // }
+    @Controller
+    public class ProfileController {
+
+        @Autowired
+        private UserService userService;
+
+        @PostMapping("/home/profile")
+        public String changeName(@RequestParam("fullname") String fullname, Model model) {
+            // Kiểm tra người dùng đã đăng nhập chưa
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication != null && authentication.isAuthenticated()) {
+                String email = authentication.getName(); // Lấy email của người dùng hiện tại
+
+                // Cập nhật thông tin fullname trong cơ sở dữ liệu
+                userService.updateFullname(email, fullname); // Cập nhật tên mới
+
+                model.addAttribute("message", "Tên đã được thay đổi thành công!");
+            } else {
+                model.addAttribute("message", "Bạn cần đăng nhập để thay đổi tên!");
+            }
+
+            return "/home/profile"; // Chuyển hướng về trang profile sau khi cập nhật
         }
-
-        // Cập nhật tên người dùng và lưu lạgiti
-        username.setFullname(fullname);
-        userService.save(username);
-
-        return "Tên đã được cập nhật!";
     }
 }
