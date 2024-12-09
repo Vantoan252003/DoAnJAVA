@@ -1,6 +1,7 @@
 package ecourse.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -9,37 +10,40 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import ecourse.model.Order;
 import ecourse.model.UserClass;
 import ecourse.repository.ContactRepository;
+import ecourse.repository.OrderRepository;
 import ecourse.repository.UserRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
     @Autowired
     UserRepository userRepository;
     @Autowired
     ContactRepository contactRepository;
+    @Autowired OrderRepository orderRepository;
     @ModelAttribute
     private void userDetails(Model m, Principal p) {
         String email = p.getName();
         UserClass user = userRepository.findByEmail(email);
         m.addAttribute("user", user);
     }
-
-    @GetMapping("/admin")
-    public String trueAdmin() {
-        return "admin/index";
-    }
-    @GetMapping("/admin/messages")
-    public String messages(Model model) {
+    @GetMapping
+    public String getAdminPage(Model model) {
+        // Lấy danh sách các đơn hàng
+        List<Order> orders = orderRepository.findAll();
         model.addAttribute("list", contactRepository.findAll(Sort.by(Sort.Direction.DESC, "submittedAt")));
-        return "admin/messages";
+        model.addAttribute("orders", orders); // Truyền dữ liệu vào model
+
+        return "admin/index"; // Tên file HTML Thymeleaf
     }
     @GetMapping("/admin/messages/delete/{id}")
     public String delete(@PathVariable ("id") Short id) {
