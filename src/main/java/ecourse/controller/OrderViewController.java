@@ -30,7 +30,7 @@ public class OrderViewController {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         Short currentPrincipalName = userDetails.getUserId();
         UserClass user = userRepository.findByUserId(currentPrincipalName);
-        List<Order> orders = orderRepository.findOrdersByUserId(user.getUserId());
+        List<Order> orders = orderRepository.findOrdersByUser_UserId(user.getUserId());
         model.addAttribute("orders", orders);
         return "/home/cart";
     }

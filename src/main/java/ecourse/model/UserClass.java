@@ -56,6 +56,16 @@ public class UserClass {
         this.enroll = enroll;
     }
     //nối xong
+    //nối với bảng order
+    @OneToMany(mappedBy = "user")
+    private List<Order> order;
+    public List<Order> getOrder(){
+        return order;
+    }
+    public void setOrder(List<Order> order){
+        this.order = order;
+    }
+    //nối xong
     public MultipartFile getImageFile() {
         return imageFile;
     }

@@ -9,7 +9,6 @@ import ecourse.model.Order;
 import ecourse.model.UserClass;
 import ecourse.repository.CourseRepository;
 import ecourse.repository.OrderRepository;
-import ecourse.repository.UserRepository;
 import ecourse.secutiry.CustomUserDetails;
 
 @Service
@@ -29,13 +28,15 @@ public class OrderService {
             );
 
             // Kiểm tra xem người dùng đã thêm khóa học vào giỏ hàng chưa
-            boolean alreadyInCart = orderRepository.existsByUserIdAndCourse_CourseId(userId, courseId);
+            boolean alreadyInCart = orderRepository.existsByUser_UserIdAndCourse_CourseId(userId, courseId);
             if (alreadyInCart) {
                 throw new IllegalStateException("Khóa học này đã có trong giỏ hàng!");
             }
             // Thêm khóa học vào giỏ hàng
             Order order = new Order();
-            order.setUserId(userId);
+            UserClass user = new UserClass();
+            user.setUserId(userId);
+            order.setUser(user);
             order.setCourse(course);
             order.setStatus(Status.pending); // Giả định trạng thái là "PENDING"
             order.setTotalPrice(course.getPrice()); // Giả định totalPrice là giá của khóa học

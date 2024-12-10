@@ -19,8 +19,7 @@ public class Order {
     @Id
     @Column(name = "order_id")
     private short orderId;
-    @Column(name = "user_id")
-    private short userId;
+   
     //nối khóa học
     @ManyToOne
     @JoinColumn(name = "course_id")
@@ -30,6 +29,17 @@ public class Order {
     }
     public void setCourse(Course course) {
         this.course = course;
+    }
+    //nối xong
+    //nối lại bảng user
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserClass user;
+    public UserClass getUser() {
+        return user;
+    }
+    public void setUser(UserClass user) {
+        this.user = user;
     }
     //nối xong
     @Column(name = "order_date")
@@ -45,12 +55,7 @@ public class Order {
     public void setOrderId(short orderId) {
         this.orderId = orderId;
     }
-    public short getUserId() {
-        return userId;
-    }
-    public void setUserId(short userId) {
-        this.userId = userId;
-    }
+  
 
     public LocalDateTime getOrderDate() {
         return orderDate;
