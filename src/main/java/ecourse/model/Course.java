@@ -62,7 +62,15 @@ public class Course {
         this.enrollM = enroll;
     }
     //nối xong
-
+    //nối đơn hàng
+    @OneToMany(mappedBy = "course")
+    private List<Order> order;
+    public List<Order> getOrder(){
+        return order;
+    }
+    public void setOrder(List <Order> order){
+        this.order = order;
+    }
     //nối tiếp
     @OneToMany(mappedBy = "course")
     private List<Lessons> lesson;

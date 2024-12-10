@@ -8,9 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>TRANG QUẢN TRỊ VIÊN</title>
-
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -77,7 +75,7 @@
                         <a class="collapse-item" href="/admin/lessons">Lessons</a>
                         <a class="collapse-item" href="/admin/submissions">Submissions</a>
                         <a class="collapse-item" href="/admin/teacher">Teacher</a>
-                        
+
                     </div>
                 </div>
             </li>
@@ -225,47 +223,109 @@
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
+
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
+                            aria-labelledby="alertsDropdown">
+                            <h6 class="dropdown-header bg-primary">
+                                <i class="fas fa-bell mr-2"></i>Thông Báo Đơn Hàng
+                            </h6>
+                            <div class="dropdown-notifications" style="max-height: 400px; overflow-y: auto;">
+                                <th:block th:each="order : ${orders}">
+                                    <a class="dropdown-item" href="#">
+                                        <div class="notification-item d-flex align-items-center py-2">
+                                            <!-- User Avatar -->
+                                            <div class="notification-avatar mr-3">
+                                                <img class="rounded-circle"
+                                                    style="width: 45px; height: 45px; object-fit: cover;"
+                                                    th:src="'data:image/jpeg;base64,' + ${order.user.userImageUrl}"
+                                                    th:alt="${order.user.fullname}">
+                                            </div>
+                                            <!-- Notification Content -->
+                                            <div class="notification-content flex-grow-1">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h6 class="mb-0" th:text="${order.user.fullname}">User Name</h6>
+                                                    <small class="text-muted"
+                                                        th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}">Date</small>
+                                                </div>
+                                                <div class="notification-text small">
+                                                    <span class="font-weight-bold"
+                                                        th:text="${order.course.title}">Course Title</span>
+                                                </div>
+                                                <div class="notification-price small text-success">
+                                                    <i class="fas fa-tag mr-1"></i>
+                                                    <span
+                                                        th:text="${#numbers.formatDecimal(order.totalPrice, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
+                                                </div>
+                                            </div>
+                                            <!-- Action Buttons -->
+                                            <div class="notification-actions d-flex align-items-center ml-2">
+                                                <!-- Approve Button -->
+                                                <button class="btn btn-success btn-sm mx-1"
+                                                   >
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                                <!-- Reject Button -->
+                                                <button class="btn btn-danger btn-sm mx-1"
+                                                  >
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                    </a>
+                                </th:block>
                             </div>
+                            <a class="dropdown-item text-center small text-gray-500 py-2" href="/admin/orders">
+                                <i class="fas fa-angle-right mr-1"></i>Xem tất cả đơn hàng
+                            </a>
+                        </div>
+                        
+
+                            <style>
+                                .dropdown-notifications {
+                                    border-bottom: 1px solid #e3e6f0;
+                                }
+                                
+                                .notification-item {
+                                    transition: background-color 0.2s;
+                                    border-left: 4px solid transparent;
+                                }
+                                
+                                .notification-item:hover {
+                                    background-color: #f8f9fc;
+                                    border-left-color: #4e73df;
+                                }
+                                
+                                .notification-content {
+                                    max-width: 250px;
+                                    min-width: 0; /* Để flex item có thể co lại */
+                                }
+                                
+                                .notification-text {
+                                    /* Bỏ white-space: nowrap để cho phép xuống dòng */
+                                    word-wrap: break-word; /* Cho phép từ dài được wrap */
+                                    overflow-wrap: break-word;
+                                    line-height: 1.4;
+                                    margin: 4px 0;
+                                }
+                                
+                                /* Thêm giới hạn số dòng hiển thị nếu muốn */
+                                .notification-text span {
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 2; /* Giới hạn 2 dòng */
+                                    -webkit-box-orient: vertical;
+                                    overflow: hidden;
+                                }
+                                
+                                /* Đảm bảo các phần tử khác không bị ảnh hưởng */
+                                .notification-price {
+                                    margin-top: 4px;
+                                }
+                                
+                                .notification-status {
+                                    flex-shrink: 0; /* Không cho phép co lại */
+                                }
+                                </style>
                         </li>
 
                         <!-- Nav Item - Messages -->
@@ -284,8 +344,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="/img/undraw_profile_1.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="/img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -294,7 +353,8 @@
                                         <div class="small text-gray-500">Emily Fowler · 58m</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="/admin/messages">Read More Messages</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="/admin/messages">Read
+                                    More Messages</a>
                             </div>
                         </li>
 
@@ -304,9 +364,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" sec:authentication="principal.fullname"></span>
-                                <img class="img-profile rounded-circle"
-                                    src="/img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                                    sec:authentication="principal.fullname"></span>
+                                <img class="img-profile rounded-circle" src="/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -338,28 +398,28 @@
 
                 <!-- Begin Page Content -->
                 <div layout:fragment="content">
-       
+
                 </div>
-                       
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
 
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Bản quyền &copy; ăn cắp</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Bản quyền &copy; ăn cắp</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->

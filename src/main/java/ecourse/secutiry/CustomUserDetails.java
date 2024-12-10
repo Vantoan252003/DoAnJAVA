@@ -44,6 +44,9 @@ public class CustomUserDetails implements UserDetails {
     public String getEmailUser() {
         return user.getEmail();
     }
+    public Short getUserId(){
+        return user.getUserId();
+    }
 
     @Override
     public boolean isCredentialsNonExpired() {

@@ -9,6 +9,6 @@ public interface UserRepository extends CrudRepository<UserClass, Short> {
 
     public UserClass findByEmail(String email);
 
-    public UserClass findByUsername(String fullname);
-    
+    public UserClass findByUsername(String username);
+    public UserClass findByUserId(Short userId);
 }
