@@ -12,5 +12,4 @@ public class SecurityUtils {
         }
         throw new IllegalStateException("Người dùng chưa đăng nhập hoặc thông tin không hợp lệ");
     }
-
 }

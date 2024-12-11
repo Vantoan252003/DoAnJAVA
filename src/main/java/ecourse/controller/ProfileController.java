@@ -1,69 +1,47 @@
 package ecourse.controller;
 
+import java.io.File;
+import java.security.Principal;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import ecourse.model.UserClass;
 import ecourse.service.UserService;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-
-@RestController
-@RequestMapping("/profile")
+@Controller
+@RequestMapping("/home")
 public class ProfileController {
 
-    private final UserService userService;
+    @Autowired
+    private UserService userService; // Service để quản lý người dùng
 
-    public ProfileController(UserService userService) {
-        this.userService = userService;
-    }
+    @PostMapping("/home/profile")
+    public String updateProfilePicture(@RequestParam("file") MultipartFile file, Principal principal) {
+        try {
+            // Lấy người dùng đang đăng nhập
+            String username = principal.getName();
+            UserClass user = userService.findByUsername(username);
 
-    @PostMapping("/update-avatar")
-    public ResponseEntity<?> updateAvatar(@RequestParam("avatar") MultipartFile avatarFile) {
-        // Lấy tên người dùng từ Spring Security (hoặc từ session)
-        String username = getCurrentUsername();
+            // Xử lý file ảnh
+            String fileName = file.getOriginalFilename();
+            String uploadDir = "src/main/resources/static/img/";
+            File uploadFile = new File(uploadDir + fileName);
+            file.transferTo(uploadFile);
 
-        if (username == null) {
-            return ResponseEntity.status(403).body("User not authenticated");
-        }
+            // Cập nhật đường dẫn ảnh đại diện vào cơ sở dữ liệu
+            user.setProfilePicture("/img/" + fileName);
+            userService.save(user);
 
-        // Lưu file vào hệ thống hoặc Cloud Storage (Ví dụ lưu vào server)
-        String imageUrl = userService.uploadAvatar(username, avatarFile);
-        
-        // Cập nhật URL ảnh trong cơ sở dữ liệu
-        userService.updateUserImageUrl(username, imageUrl);
+            return "redirect:/profile"; // Điều hướng đến trang profile
 
-        // Trả về URL ảnh mới cho frontend
-        return ResponseEntity.ok().body(new ResponseAvatar(imageUrl));
-    }
-
-    // Lấy tên người dùng hiện tại từ SecurityContext
-    private String getCurrentUsername() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            return authentication.getName();  // Lấy username từ Spring Security
-        }
-        return null;
-    }
-
-    // DTO cho phản hồi (sử dụng URL ảnh mới)
-    public static class ResponseAvatar {
-        private String newImageUrl;
-
-        public ResponseAvatar(String newImageUrl) {
-            this.newImageUrl = newImageUrl;
-        }
-
-        public String getNewImageUrl() {
-            return newImageUrl;
-        }
-
-        public void setNewImageUrl(String newImageUrl) {
-            this.newImageUrl = newImageUrl;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/profile"; // Nếu có lỗi, quay lại trang profile
         }
     }
 }

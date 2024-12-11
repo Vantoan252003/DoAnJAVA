@@ -44,7 +44,8 @@ public class CustomUserDetails implements UserDetails {
     public String getEmailUser() {
         return user.getEmail();
     }
-    public Short getUserId(){
+
+    public Short getUserId() {
         return user.getUserId();
     }
 
@@ -71,5 +72,5 @@ public class CustomUserDetails implements UserDetails {
 
         return true;
     }
-}
 
+}

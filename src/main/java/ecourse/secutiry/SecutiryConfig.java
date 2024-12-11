@@ -11,7 +11,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecutiryConfig {
+public class SecutiryConfig{
+    
     @Bean 
     public UserDetailsService getUserDetailsServices(){
         return new UserDetailsServiceImpl();

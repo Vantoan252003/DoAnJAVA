@@ -167,13 +167,15 @@ public class UserClass {
     }
 
     public void setImageUrl(String imageUrl) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setImageUrl'");
     }
 
     public String getImageUrl() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getImageUrl'");
+    }
+
+    public void setProfilePicture(String string) {
+        throw new UnsupportedOperationException("Unimplemented method 'setProfilePicture'");
     }
 
     // @Service
