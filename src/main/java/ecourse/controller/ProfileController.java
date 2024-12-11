@@ -38,7 +38,11 @@ public class ProfileController {
             userService.save(user);
 
             return "redirect:/profile"; // Điều hướng đến trang profile
-
+        // Lưu file vào hệ thống hoặc Cloud Storage (Ví dụ lưu vào server)
+       
+            
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
             return "redirect:/profile"; // Nếu có lỗi, quay lại trang profile

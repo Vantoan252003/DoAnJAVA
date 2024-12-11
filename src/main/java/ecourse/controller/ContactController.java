@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ecourse.model.Contact;
@@ -25,6 +26,11 @@ public class ContactController {
     public String sendContact(@ModelAttribute Contact contact, HttpSession session){
        contactRepository.save(contact);
         return "redirect:/home/contact";
+    }
+    @GetMapping("/admin/delete/{id}")
+    public String delete(@PathVariable ("id") Short id) {
+        contactRepository.deleteById(id);
+        return "redirect:/admin";
     }
     
     

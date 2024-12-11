@@ -226,106 +226,62 @@
 
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="alertsDropdown">
-                            <h6 class="dropdown-header bg-primary">
-                                <i class="fas fa-bell mr-2"></i>Thông Báo Đơn Hàng
-                            </h6>
-                            <div class="dropdown-notifications" style="max-height: 400px; overflow-y: auto;">
-                                <th:block th:each="order : ${orders}">
-                                    <a class="dropdown-item" href="#">
-                                        <div class="notification-item d-flex align-items-center py-2">
-                                            <!-- User Avatar -->
-                                            <div class="notification-avatar mr-3">
-                                                <img class="rounded-circle"
-                                                    style="width: 45px; height: 45px; object-fit: cover;"
-                                                    th:src="'data:image/jpeg;base64,' + ${order.user.userImageUrl}"
-                                                    th:alt="${order.user.fullname}">
-                                            </div>
-                                            <!-- Notification Content -->
-                                            <div class="notification-content flex-grow-1">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <h6 class="mb-0" th:text="${order.user.fullname}">User Name</h6>
-                                                    <small class="text-muted"
-                                                        th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}">Date</small>
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header bg-primary">
+                                    <i class="fas fa-bell mr-2"></i>Thông Báo Đơn Hàng
+                                </h6>
+                                <div class="dropdown-notifications" style="max-height: 400px; overflow-y: auto;">
+                                    <th:block th:each="order : ${orders}">
+                                        <a class="dropdown-item" href="#">
+                                            <div class="notification-item d-flex align-items-center py-2">
+                                                <!-- User Avatar -->
+                                                <div class="notification-avatar mr-3">
+                                                    <img class="rounded-circle border border-primary"
+                                                    th:src="'data:image/jpeg;base64,' + ${order.user.userImageUrl}" alt="ảnh lỗi"
+                                                    style="width: 50px; height: 50px; object-fit: cover;">
+                                                  
                                                 </div>
-                                                <div class="notification-text small">
-                                                    <span class="font-weight-bold"
-                                                        th:text="${order.course.title}">Course Title</span>
+                                                <!-- Notification Content -->
+                                                <div class="notification-content flex-grow-1">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <h7 class="font-weight-bold mb-0 text-primary"
+                                                        th:text="${order.user.fullname}"></h7>
+                                                       
+                                                    </div>
+                                                    <p class="text mb-1 text-secondary"
+                                                    th:text="${order.course.title}"></p>
+                                                    <div class="btn-success rounded">
+                                                        <i class="fas fa-tag mr-1"></i>
+                                                        <span
+                                                            th:text="${#numbers.formatDecimal(order.totalPrice, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
+                                                    </div>
+                                                    
+                                                        <small class="text-muted"
+                                                            th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}">Date</small>
                                                 </div>
-                                                <div class="notification-price small text-success">
-                                                    <i class="fas fa-tag mr-1"></i>
-                                                    <span
-                                                        th:text="${#numbers.formatDecimal(order.totalPrice, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
+                                    
+                                                <!-- Action Buttons -->
+                                                <div class="notification-actions d-flex align-items-center ml-2">
+                                                    <!-- Approve Button -->
+                                                    <button class="btn btn-success btn-sm mx-1">
+                                                        <i class="fas fa-check"></i>
+                                                    </button>
+                                                    <!-- Reject Button -->
+                                                    <button class="btn btn-danger btn-sm mx-1">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
                                                 </div>
                                             </div>
-                                            <!-- Action Buttons -->
-                                            <div class="notification-actions d-flex align-items-center ml-2">
-                                                <!-- Approve Button -->
-                                                <button class="btn btn-success btn-sm mx-1"
-                                                   >
-                                                    <i class="fas fa-check"></i>
-                                                </button>
-                                                <!-- Reject Button -->
-                                                <button class="btn btn-danger btn-sm mx-1"
-                                                  >
-                                                    <i class="fas fa-times"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </th:block>
+                                        </a>
+                                    </th:block>
+                                </div>
+                                <a class="dropdown-item text-center small text-gray-500 py-2" href="/admin/orders">
+                                    <i class="fas fa-angle-right mr-1"></i>Xem tất cả đơn hàng
+                                </a>
                             </div>
-                            <a class="dropdown-item text-center small text-gray-500 py-2" href="/admin/orders">
-                                <i class="fas fa-angle-right mr-1"></i>Xem tất cả đơn hàng
-                            </a>
-                        </div>
-                        
 
-                            <style>
-                                .dropdown-notifications {
-                                    border-bottom: 1px solid #e3e6f0;
-                                }
-                                
-                                .notification-item {
-                                    transition: background-color 0.2s;
-                                    border-left: 4px solid transparent;
-                                }
-                                
-                                .notification-item:hover {
-                                    background-color: #f8f9fc;
-                                    border-left-color: #4e73df;
-                                }
-                                
-                                .notification-content {
-                                    max-width: 250px;
-                                    min-width: 0; /* Để flex item có thể co lại */
-                                }
-                                
-                                .notification-text {
-                                    /* Bỏ white-space: nowrap để cho phép xuống dòng */
-                                    word-wrap: break-word; /* Cho phép từ dài được wrap */
-                                    overflow-wrap: break-word;
-                                    line-height: 1.4;
-                                    margin: 4px 0;
-                                }
-                                
-                                /* Thêm giới hạn số dòng hiển thị nếu muốn */
-                                .notification-text span {
-                                    display: -webkit-box;
-                                    -webkit-line-clamp: 2; /* Giới hạn 2 dòng */
-                                    -webkit-box-orient: vertical;
-                                    overflow: hidden;
-                                }
-                                
-                                /* Đảm bảo các phần tử khác không bị ảnh hưởng */
-                                .notification-price {
-                                    margin-top: 4px;
-                                }
-                                
-                                .notification-status {
-                                    flex-shrink: 0; /* Không cho phép co lại */
-                                }
-                                </style>
+
+
                         </li>
 
                         <!-- Nav Item - Messages -->
@@ -339,26 +295,57 @@
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
+                                <h6 class="dropdown-header bg-primary text-white d-flex align-items-center">
+                                    <i class="fas fa-comments mr-2"></i> Trung tâm phản hồi
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="/img/undraw_profile_1.svg" alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
+                                <div class="dropdown-notifications" style="max-height: 400px; overflow-y: auto;">
+                                    <th:block th:each="o : ${contacts}">
+                                        <div class="dropdown-item d-flex align-items-center py-3 border-bottom">
+                                            <!-- User Avatar -->
+                                            <div class="dropdown-list-image mr-3 position-relative">
+                                                <img class="rounded-circle border border-primary"
+                                                    src="/img/undraw_profile_1.svg" alt="..."
+                                                    style="width: 50px; height: 50px; object-fit: cover;">
+                                                <div class="status-indicator bg-success position-absolute"
+                                                    style="bottom: 0; right: 0; width: 12px; height: 12px; border-radius: 50%;">
+                                                </div>
+                                            </div>
+
+                                            <!-- Message Content -->
+                                            <div class="notification-content flex-grow-1">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h7 class="font-weight-bold mb-0 text-primary"
+                                                        th:text="${o.fullname}"></h7>
+                                                   
+                                                </div>
+                                                <p class="text small mb-1 text-secondary"
+                                                    th:text="${o.message}"></p>
+                                                <small class="text-gray-500" th:text="${o.email}"></small>
+                                                <small class="text-muted"
+                                                th:text="${#temporals.format(o.submittedAt, 'dd-MM-yyyy HH:mm')}"></small>
+                                            </div>
+
+                                            <!-- Delete Button -->
+                                            <div class="notification-actions ml-3">
+                                                <a th:href="@{/admin/delete/{id}(id=${o.id})}"
+                                                    class="text-danger font-weight-bold btn-sm"
+                                                    onclick="return confirm('Bạn có chắc muốn xóa phản hồi này?')"
+                                                    title="Xóa phản hồi">
+                                                    <i class="fas fa-times"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                </div>
+                                <!-- Footer Link -->
+                                <a class="dropdown-item text-center small text-gray-500 py-2">
+                                    <i class="fas fa-angle-right mr-1"></i> Đọc thêm phản hồi
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="/admin/messages">Read
-                                    More Messages</a>
                             </div>
+
                         </li>
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                      
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
