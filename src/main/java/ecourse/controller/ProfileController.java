@@ -34,8 +34,7 @@ public class ProfileController {
         // Lưu file vào hệ thống hoặc Cloud Storage (Ví dụ lưu vào server)
         String imageUrl = userService.uploadAvatar(username, avatarFile);
         
-        // Cập nhật URL ảnh trong cơ sở dữ liệu
-        userService.updateUserImageUrl(username, imageUrl);
+  
 
         // Trả về URL ảnh mới cho frontend
         return ResponseEntity.ok().body(new ResponseAvatar(imageUrl));

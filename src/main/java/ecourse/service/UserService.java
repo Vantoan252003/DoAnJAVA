@@ -124,20 +124,7 @@ public String uploadAvatar(String username, MultipartFile avatarFile) {
 
 
     // Phương thức cập nhật URL ảnh vào cơ sở dữ liệu
-    @SuppressWarnings("unused")
-    public void updateUserImageUrl(String username, String imageUrl) {
-        // Cập nhật URL ảnh vào cơ sở dữ liệu của người dùng
-        UserClass userImageUrl = userRepository.findByUsername(username); // Giả sử bạn có repository để tìm người dùng
-        userImageUrl.setImageUrl(imageUrl);
-        userRepository.save(userImageUrl);
-        if (userImageUrl != null) {
-            userImageUrl.setImageUrl(userImageUrl);
-        } else {
-            // Xử lý trường hợp userImageUrl là null (có thể gán giá trị mặc định)
-            userImageUrl.setImageUrl("default-image-url");
-        }
-        
-    }
+   
 
     // Phương thức lấy URL ảnh đại diện người dùng
     public String getUserImageUrl(String username) {

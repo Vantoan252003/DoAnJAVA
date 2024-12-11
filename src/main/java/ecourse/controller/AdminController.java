@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ecourse.model.Order;
@@ -39,15 +39,11 @@ public class AdminController {
     public String getAdminPage(Model model) {
         // Lấy danh sách các đơn hàng
         List<Order> orders = orderRepository.findAll();
-        model.addAttribute("list", contactRepository.findAll(Sort.by(Sort.Direction.DESC, "submittedAt")));
+        model.addAttribute("contacts", contactRepository.findAll(Sort.by(Sort.Direction.DESC, "submittedAt")));
         model.addAttribute("orders", orders); // Truyền dữ liệu vào model
 
         return "admin/index"; // Tên file HTML Thymeleaf
     }
-    @GetMapping("/admin/messages/delete/{id}")
-    public String delete(@PathVariable ("id") Short id) {
-        contactRepository.deleteById(id);
-        return "redirect:/admin/messages";
-    }
+  
     
 }
