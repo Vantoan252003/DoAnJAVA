@@ -17,6 +17,8 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -227,56 +229,52 @@
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header bg-primary">
-                                    <i class="fas fa-bell mr-2"></i>Thông Báo Đơn Hàng
+                                <h6 class="dropdown-header bg-primary text-white d-flex align-items-center">
+                                    <i class="fas fa-bell mr-2"></i> Thông Báo Đơn Hàng
                                 </h6>
                                 <div class="dropdown-notifications" style="max-height: 400px; overflow-y: auto;">
                                     <th:block th:each="order : ${orders}">
-                                        <a class="dropdown-item" href="#">
-                                            <div class="notification-item d-flex align-items-center py-2">
-                                                <!-- User Avatar -->
-                                                <div class="notification-avatar mr-3">
-                                                    <img class="rounded-circle border border-primary"
-                                                    th:src="'data:image/jpeg;base64,' + ${order.user.userImageUrl}" alt="ảnh lỗi"
-                                                    style="width: 50px; height: 50px; object-fit: cover;">
-                                                  
+                                        <div class="dropdown-item d-flex align-items-center py-3 border-bottom">
+                                            <!-- User Avatar -->
+                                            <div class="notification-avatar mr-3 position-relative">
+                                                <img class="rounded-circle border border-primary"
+                                                    th:src="'data:image/jpeg;base64,' + ${order.user.userImageUrl}"
+                                                    alt="ảnh lỗi" style="width: 50px; height: 50px; object-fit: cover;">
+                                            </div>
+
+                                            <!-- Notification Content -->
+                                            <div class="notification-content flex-grow-1">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h6 class="font-weight-bold mb-0 text-primary"
+                                                        th:text="${order.user.fullname}">User Name</h6>
+                                                    <small class="text-muted"
+                                                        th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}">Date</small>
                                                 </div>
-                                                <!-- Notification Content -->
-                                                <div class="notification-content flex-grow-1">
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <h7 class="font-weight-bold mb-0 text-primary"
-                                                        th:text="${order.user.fullname}"></h7>
-                                                       
-                                                    </div>
-                                                    <p class="text mb-1 text-secondary"
-                                                    th:text="${order.course.title}"></p>
-                                                    <div class="btn-success rounded">
-                                                        <i class="fas fa-tag mr-1"></i>
-                                                        <span
-                                                            th:text="${#numbers.formatDecimal(order.totalPrice, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
-                                                    </div>
-                                                    
-                                                        <small class="text-muted"
-                                                            th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}">Date</small>
-                                                </div>
-                                    
-                                                <!-- Action Buttons -->
-                                                <div class="notification-actions d-flex align-items-center ml-2">
-                                                    <!-- Approve Button -->
-                                                    <button class="btn btn-success btn-sm mx-1">
-                                                        <i class="fas fa-check"></i>
-                                                    </button>
-                                                    <!-- Reject Button -->
-                                                    <button class="btn btn-danger btn-sm mx-1">
-                                                        <i class="fas fa-times"></i>
-                                                    </button>
+                                                <p class="text mb-1 text-secondary small"
+                                                    th:text="${order.course.title}">Course Title</p>
+                                                <div class="text-success font-weight-bold">
+                                                    <i class="fas fa-tag mr-1"></i>
+                                                    <span
+                                                        th:text="${#numbers.formatDecimal(order.totalPrice, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
                                                 </div>
                                             </div>
-                                        </a>
+
+                                            <!-- Action Buttons -->
+                                            <div class="notification-actions ml-3">
+                                                <!-- Approve Button -->
+                                                <a href="javascript:void(0)"
+                                                    th:onclick="'approveOrder(' + ${order.orderId} + ')'"
+                                                    class="text-success font-weight-bold" title="Phê duyệt đơn hàng">
+                                                    <i class="fas fa-check-circle fa-lg"></i>
+                                                </a>
+
+                                            </div>
+                                        </div>
                                     </th:block>
                                 </div>
+                                <!-- Footer -->
                                 <a class="dropdown-item text-center small text-gray-500 py-2" href="/admin/orders">
-                                    <i class="fas fa-angle-right mr-1"></i>Xem tất cả đơn hàng
+                                    <i class="fas fa-angle-right mr-1"></i> Xem tất cả đơn hàng
                                 </a>
                             </div>
 
@@ -316,13 +314,11 @@
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <h7 class="font-weight-bold mb-0 text-primary"
                                                         th:text="${o.fullname}"></h7>
-                                                   
                                                 </div>
-                                                <p class="text small mb-1 text-secondary"
-                                                    th:text="${o.message}"></p>
+                                                <p class="text small mb-1 text-secondary" th:text="${o.message}"></p>
                                                 <small class="text-gray-500" th:text="${o.email}"></small>
                                                 <small class="text-muted"
-                                                th:text="${#temporals.format(o.submittedAt, 'dd-MM-yyyy HH:mm')}"></small>
+                                                    th:text="${#temporals.format(o.submittedAt, 'dd-MM-yyyy HH:mm')}"></small>
                                             </div>
 
                                             <!-- Delete Button -->
@@ -345,7 +341,7 @@
 
                         </li>
 
-                      
+
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -377,9 +373,7 @@
                                 </a>
                             </div>
                         </li>
-
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
 
@@ -452,6 +446,41 @@
     <!-- Page level custom scripts -->
     <script src="/js/demo/chart-area-demo.js"></script>
     <script src="/js/demo/chart-pie-demo.js"></script>
+    <script>
+        function approveOrder(orderId) {
+            Swal.fire({
+                title: 'Xác nhận',
+                text: 'Bạn có chắc muốn phê duyệt đơn hàng này?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Đồng ý',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`/admin/approve/${orderId}`)
+                        .then(response => response.text())
+                        .then(message => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Thành công!',
+                                text: message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                location.reload();
+                            });
+                        })
+                        .catch(error => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Lỗi!',
+                                text: 'Có lỗi xảy ra khi phê duyệt đơn hàng'
+                            });
+                        });
+                }
+            });
+        }
+    </script>
 
 </body>
 
