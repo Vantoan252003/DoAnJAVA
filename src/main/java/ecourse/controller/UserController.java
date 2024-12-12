@@ -75,40 +75,7 @@ public class UserController {
         return "redirect:/admin/user";
     }
 
-    // @PostMapping("/home/profile")
-    // public String changeName(@RequestParam("fullname") String fullname) {
-    // // Lấy thông tin người dùng hiện tại
-    // Authentication authentication =
-    // SecurityContextHolder.getContext().getAuthentication();
-    // String email = authentication.getName(); // Lấy email người dùng hiện tại
-
-    // // Tìm người dùng trong cơ sở dữ liệu
-    // UserClass username = userService.findByUsername(email);
-    // if (username == null) {
-    // return "Người dùng không tồn tại!";
-    // }
-
-    // // Cập nhật tên người dùng và lưu lại
-    // username.setFullname(fullname);
-    // userService.save(username);
-    // return "Tên đã được cập nhật!";
-    // }
-
-    // public String updateFullname(@RequestParam String fullname) {
-    // String username = getCurrentUsername();
-    // userService.updateFullname(username, fullname);
-    // return "Fullname updated successfully!";
-    // }
-
-    // private String getCurrentUsername() {
-    // Object principal =
-    // SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    // if (principal instanceof UserDetails) {
-    // return ((UserDetails) principal).getUsername();
-    // } else {
-    // return principal.toString();
-    // }
-    // }
+   
     @Controller
     public class ProfileController {
 

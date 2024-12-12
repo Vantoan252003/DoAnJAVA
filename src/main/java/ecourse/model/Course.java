@@ -50,8 +50,8 @@ public class Course {
 
     @Column(name ="price")
     private float price;
-    @Column(name = "category")
-    private String category;
+    @Column(name = "category_id")
+    private int category;
     //nối khóa học
     @OneToMany(mappedBy = "course")
     private List<Enrollments> enrollM;
@@ -128,10 +128,10 @@ public class Course {
     public void setPrice(float price) {
         this.price = price;
     }
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
     public MultipartFile getImageFile() {
