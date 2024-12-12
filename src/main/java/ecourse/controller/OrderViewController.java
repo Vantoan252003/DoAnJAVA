@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import ecourse.model.Enrollments;
 import ecourse.model.Order;
 import ecourse.model.UserClass;
+import ecourse.repository.EnrollmentsRepository;
 import ecourse.repository.OrderRepository;
 import ecourse.repository.UserRepository;
 import ecourse.secutiry.CustomUserDetails;
@@ -23,6 +25,8 @@ public class OrderViewController {
     private OrderRepository orderRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired 
+    private EnrollmentsRepository  enrollmentsRepository;
 
     @GetMapping("/home/cart")
     public String viewCart(Model model) {
@@ -31,6 +35,8 @@ public class OrderViewController {
         Short currentPrincipalName = userDetails.getUserId();
         UserClass user = userRepository.findByUserId(currentPrincipalName);
         List<Order> orders = orderRepository.findOrdersByUser_UserId(user.getUserId());
+        List<Enrollments> enrolls = enrollmentsRepository.findEnrollmentsByClazz_UserId(user.getUserId());
+        model.addAttribute("enrolls",enrolls);
         model.addAttribute("orders", orders);
         return "/home/cart";
     }
@@ -39,4 +45,5 @@ public class OrderViewController {
         orderRepository.deleteById(orderId);
         return "redirect:/home/cart";
     }
+   
 }

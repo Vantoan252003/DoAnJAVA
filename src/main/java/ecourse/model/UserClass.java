@@ -47,7 +47,7 @@ public class UserClass {
     @Column(name = "fullname")
     private String fullname;
     // nối phiếu học
-    @OneToMany(mappedBy = "Clazz")
+    @OneToMany(mappedBy = "clazz")
     private List<Enrollments> enroll;
 
     public List<Enrollments> getEnoll() {
