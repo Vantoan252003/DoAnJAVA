@@ -43,25 +43,6 @@ public class ProfileController {
     // POST request để cập nhật ảnh đại diện
     @PostMapping("/avatar")
     public String updateProfilePicture(@RequestParam("file") MultipartFile file, Principal principal) {
-        try {
-            // Lấy người dùng đang đăng nhập
-            String username = principal.getName();
-            UserClass user = userService.findByUsername(username);
-
-            // Xử lý file ảnh
-            String fileName = file.getOriginalFilename();
-            String uploadDir = "src/main/resources/static/img";
-            File uploadFile = new File(uploadDir + fileName);
-            file.transferTo(uploadFile);
-
-            // Cập nhật đường dẫn ảnh đại diện vào cơ sở dữ liệu
-            user.setProfilePicture("/img/" + fileName);
-            userService.save(user);
-
-            return "redirect:/home/avatar"; // Điều hướng đến trang avatar sau khi cập nhật ảnh
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "redirect:/home/avatar"; // Nếu có lỗi, quay lại trang avatar
-        }
+       return null;
     }
 }
