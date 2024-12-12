@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="/home/layout">
+
+<head>
+    <meta charset="utf-8">
+    <title>ECourses - Cart</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Upload Your Avatar</h2>
+        
+        <form action="/home/avatar" method="POST" enctype="multipart/form-data">
+            <label for="file">Choose an avatar image:</label>
+            <input type="file" id="file" name="file" accept="image/*" required>
+            <button type="submit">Upload</button>
+        </form>
+
+        <img id="avatar" class="avatar" src="https://via.placeholder.com/150" alt="Avatar">
+
+        <input type="file" id="avatarInput" accept="image/*">
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        // Get the elements
+        const avatarInput = document.getElementById('avatarInput');
+        const avatar = document.getElementById('avatar');
+        const message = document.getElementById('message');
+
+        // Add event listener to the file input
+        avatarInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+
+            if (file) {
+                // Check if the selected file is an image
+                if (file.type.startsWith('image/')) {
+                    // Create a URL for the selected file
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        // Update the avatar image
+                        avatar.src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(file);
+
+                    // Display success message
+                    message.textContent = "Avatar updated successfully!";
+                    message.style.color = 'green';
+                } else {
+                    // If it's not an image, show error message
+                    message.textContent = "Please select a valid image file.";
+                    message.style.color = 'red';
+                }
+            }
+        });
+    </script>
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

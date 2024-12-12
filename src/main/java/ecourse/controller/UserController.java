@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/add")
-    public String add(@ModelAttribute UserClass user) {
+    public String add(@ModelAttribute UserClass user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.updateImage(user);
         userRepository.save(user);
@@ -49,7 +49,7 @@ public class UserController {
 
     // Sửa dữ liệu
     @GetMapping("/admin/user/edit/{userId}")
-    public String edit(@PathVariable("userId") short userId, Model model) {
+    public String edit(@PathVariable("userId") short userId, Model model){
         UserClass user = userRepository.findById(userId).orElse(null);
         user.setPassword("");
         model.addAttribute("user", user);

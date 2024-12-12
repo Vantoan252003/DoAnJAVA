@@ -172,7 +172,7 @@
             // Gửi yêu cầu AJAX hoặc cập nhật tên trực tiếp 
             $.ajax({
                 url: '/home/profile', // Thay bằng URL thực tế trên server
-                type: 'POST',
+                type: 'POST', 
                 data: { fullname: newName },
                 success: function (response) {
                     // Cập nhật giao diện nếu thay đổi thành công
@@ -224,13 +224,10 @@
                             <div class="card-footer">
                                 <div class="profile-container">
                                     <!-- Form cập nhật ảnh đại diện -->
-                                    <form action="/home/profile" method="POST" enctype="multipart/form-data">
-                                        <label for="file">Chọn ảnh đại diện:</label>
-                                        <input type="file" name="file" accept="image/*" required />
-                                        <button type="submit">Cập nhật ảnh đại diện</button>
-                                    </form>
+                                    <div class="link">
+                                        <a href="/home/avatar">Đổi ảnh đại diện</a>
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -279,7 +276,7 @@
                                 </div>
                             </div>
                             <div class="chitiet-profile">
-                                <a href="https://www.topcv.vn" target="_blank">Chi Tiết Profile</a>
+                                <a href="https://www.youtube.com/watch?v=1NLjjCxEAW8" target="_blank">Chi Tiết Profile</a>
                             </div>
                         </div>
                     </div>
@@ -287,7 +284,6 @@
             </form>
         </div>
         <!-- User Info End -->
-
         <div class="back-to-top" id="back-to-top">
             <i class="fa fa-arrow-up"></i>
         </div>

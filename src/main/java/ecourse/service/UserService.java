@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import ecourse.model.UserClass;
 import ecourse.repository.UserRepository;
@@ -61,18 +62,16 @@ public class UserService {
         throw new UnsupportedOperationException("Unimplemented method 'updateFullname'");
     }
 
-    // public String getUserImageUrl(String username) {
-    // throw new UnsupportedOperationException("Unimplemented method
-    // 'getUserImageUrl'");
-    // }
+    public String getUserImageUrl(String username) {
+    throw new UnsupportedOperationException("Unimplemented method 'getUserImageUrl'");
+    }
 
-    // public String uploadAvatar(String currentUser, MultipartFile avatarFile) {
-    // throw new UnsupportedOperationException("Unimplemented method
-    // 'uploadAvatar'");
-    // }
+    public String uploadAvatar(String currentUser, MultipartFile avatarFile) {
+    throw new UnsupportedOperationException("Unimplemented method 'uploadAvatar'");
+    }
 
-    // public void updateUserImageUrl(String currentUser, String imageUrl) {
-    // throw new UnsupportedOperationException("Unimplemented method
-    // 'updateUserImageUrl'");
-    // }
+    public void updateUserImageUrl(String currentUser, String imageUrl) {
+    throw new UnsupportedOperationException("Unimplemented method 'updateUserImageUrl'");
+    }
+
 }
