@@ -53,7 +53,7 @@ public class Course {
     @Column(name = "category")
     private String category;
     //nối khóa học
-    @OneToMany(mappedBy = "Course")
+    @OneToMany(mappedBy = "course")
     private List<Enrollments> enrollM;
     public List<Enrollments> getEroll(){
         return enrollM;

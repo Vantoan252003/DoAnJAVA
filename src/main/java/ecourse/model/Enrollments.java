@@ -26,12 +26,12 @@ public class Enrollments {
     //nối người dùng
     @ManyToOne
     @JoinColumn(name ="user_id")
-    private UserClass Clazz;
+    private UserClass clazz;
     public UserClass getClazz() {
-        return Clazz;
+        return clazz;
     }
-    public void setClazz(UserClass Clazz) {
-        this.Clazz = Clazz;
+    public void setClazz(UserClass clazz) {
+        this.clazz = clazz;
     }
     //nối xong
     
@@ -39,12 +39,12 @@ public class Enrollments {
     // nối khóa học
     @ManyToOne
     @JoinColumn(name ="course_id")
-    private Course Course;
+    private Course course;
     public Course getCourse() {
-        return Course;
+        return course;
     }
-    public void setCourse(Course Course) {
-        this.Course = Course;
+    public void setCourse(Course course) {
+        this.course = course;
     }
     //nối xong
 
