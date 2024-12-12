@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label for="title">ID người dùng</label>
-                <select name="Clazz.course" class="form-control">
+                <select name="clazz.course" class="form-control">
                     <option th:each="o: ${userList}" th:value="${o.userId}" th:text="${o.username}"></option>
                 </select>
             </div>
