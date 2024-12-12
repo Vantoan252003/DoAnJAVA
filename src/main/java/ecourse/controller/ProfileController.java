@@ -43,6 +43,7 @@ public class ProfileController {
     // POST request để cập nhật ảnh đại diện
     @PostMapping("/avatar")
     public String updateProfilePicture(@RequestParam("file") MultipartFile file, Principal principal) {
+<<<<<<< HEAD
         try {
             // Lấy người dùng đang đăng nhập
             String username = principal.getName();
@@ -63,6 +64,9 @@ public class ProfileController {
             e.printStackTrace();
             return "redirect:/home/avatar"; // Nếu có lỗi, quay lại trang avatar
         }
+=======
+       return null;
+>>>>>>> 8e2cec4e1127399dbf306e3d615a0b7891230398
     }
    
 }
