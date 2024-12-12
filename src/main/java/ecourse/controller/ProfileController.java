@@ -33,13 +33,13 @@ public class ProfileController {
             // Thêm dữ liệu người dùng vào model
             model.addAttribute("user", user);
 
-            return "avatar"; // Trả về trang avatar.html
+            return "/home/avatar"; // Trả về trang avatar.html
         } catch (Exception e) {
             e.printStackTrace();
             return "redirect:/profile"; // Nếu có lỗi, quay lại trang profile
         }
     }
-
+   
     // POST request để cập nhật ảnh đại diện
     @PostMapping("/avatar")
     public String updateProfilePicture(@RequestParam("file") MultipartFile file, Principal principal) {
@@ -50,7 +50,7 @@ public class ProfileController {
 
             // Xử lý file ảnh
             String fileName = file.getOriginalFilename();
-            String uploadDir = "src/main/resources/static/img";
+            String uploadDir = "src/main/resources/static/img/";
             File uploadFile = new File(uploadDir + fileName);
             file.transferTo(uploadFile);
 
@@ -64,4 +64,5 @@ public class ProfileController {
             return "redirect:/home/avatar"; // Nếu có lỗi, quay lại trang avatar
         }
     }
+   
 }
