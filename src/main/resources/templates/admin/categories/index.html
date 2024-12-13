@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="/admin/layoutAdmin">
+<head>
+    <meta charset="UTF-8">
+    <title>Khóa học</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div layout:fragment="content">
+    <div class="container mt-5">
+        <h2>Quản lý thể loại</h2>
+        <a href="/admin/categories/add" class="btn btn-success">Thêm khóa học</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID thể loại</th>
+                    <th>Tên thể loại</th>
+                    <th>Miêu tả</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="o : ${categories}">
+                    <td th:text="${o.categoryId}"></td>
+                    <td th:text="${o.categoryName}"></td>
+                    <td th:text="${o.description}"></td>
+                    
+                    <td>
+                        <a th:href="@{/admin/categories/edit/{categoryId}(categoryId=${o.categoryId})}" class="btn btn-primary btn-sm">Sửa</a>
+                        <a th:href="@{/admin/categories/delete/{categoryId}(categoryId=${o.categoryId})}" class="btn btn-danger btn-sm" onclick="return confirm('Có chắc muốn xóa không ?')">Xóa</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

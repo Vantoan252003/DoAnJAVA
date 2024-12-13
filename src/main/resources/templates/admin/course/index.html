@@ -33,9 +33,26 @@
                     <td th:text="${o.description}"></td>
                     <td th:text="${o.createdAt}"></td>
                     <td><img th:src="'data:image/jpeg;base64,' + ${o.image_url}" alt="ảnh lỗi" width="100"> </td>
-                    <td th:text="${o.teacher.fullname + ' (ID=' + o.teacher.teacherId +')'}"></td>
+                    <td>
+                        <span th:if="${o.teacher != null}" 
+                              th:text="${o.teacher.fullname + ' (ID: ' + o.teacher.teacherId + ')'}">
+                        </span>
+                        <span th:if="${o.teacher == null}" 
+                              class="badge badge-warning">
+                            Chưa có giảng viên
+                        </span>
+                    </td>
                     <td th:text="${o.price}"></td>
-                    <td th:text="${o.category}"></td>
+                    <td>
+                        <span th:if="${not #lists.isEmpty(o.categories)}">
+                            <span th:each="category, iterStat : ${o.categories}">
+                                <span th:text="${category.categoryName}"></span>
+                                <span th:if="${!iterStat.last}">, </span>
+                            </span>
+                        </span>
+                        <span th:if="${#lists.isEmpty(o.categories)}">Chưa có thể loại</span>
+                    </td>
+                    
                     <td>
                         <a th:href="@{/admin/course/edit/{courseId}(courseId=${o.courseId})}" class="btn btn-primary btn-sm">Sửa</a>
                         <a th:href="@{/admin/course/delete/{courseId}(courseId=${o.courseId})}" class="btn btn-danger btn-sm" onclick="return confirm('Có chắc muốn xóa không ?')">Xóa</a>

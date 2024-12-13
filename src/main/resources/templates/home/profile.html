@@ -110,7 +110,7 @@
                         <div class="card text-center">
                             <div class="card-body">
                                 <div class="team-item">
-                                    <img class="img-fluid" th:src="'data:image/jpeg;base64,' + ${#authentication.principal.imageUrl}" alt="Ảnh người dùng" width="150" height="150">
+                                    <img th:src="'data:image/jpeg;base64,' + ${#authentication.principal.imageUrl}" alt="Ảnh người dùng" width="150" height="150">
                                 </div>
                                 <div class="profile-container">
                                     <label for="imageFile" class="btn btn-upload d-inline-block">
