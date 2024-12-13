@@ -6,5 +6,5 @@ import ecourse.model.Categories;
 
 public interface CategoriesRepository extends JpaRepository<Categories, Integer> {
     public Categories findByCategoryName(String categoryName);
-    
+       
 }

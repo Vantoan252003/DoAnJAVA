@@ -11,4 +11,7 @@ import ecourse.model.Course;
 public interface CourseRepository extends JpaRepository<Course, Short> {
     @Query("SELECT DISTINCT c FROM courses c LEFT JOIN FETCH c.categories")
     List<Course> findAllWithCategories();
+    List<Course> findByTitleContaining(String keyword);
+    List<Course> findByCategoriesCategoryId(Integer categoryId);
+    List<Course> findByTitleContainingAndCategoriesCategoryId(String keyword, Integer categoryId);
 }

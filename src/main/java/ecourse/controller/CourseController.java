@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ecourse.model.Course;
 import ecourse.repository.CategoriesRepository;
@@ -46,6 +47,29 @@ public class CourseController {
         model.addAttribute("courseList", courseRepository.findAll());
         return "admin/course/add";
     }
+    @GetMapping("/home/course/search")
+public String searchCourses(@RequestParam(required = false) String keyword,
+                          @RequestParam(required = false) Integer category,
+                          Model model) {
+    List<Course> searchResults;
+    if (keyword != null && !keyword.isEmpty()) {
+        if (category != null) {
+            searchResults = courseRepository.findByTitleContainingAndCategoriesCategoryId(keyword, category);
+        } else {
+            searchResults = courseRepository.findByTitleContaining(keyword);
+        }
+    } else if (category != null) {
+        searchResults = courseRepository.findByCategoriesCategoryId(category);
+    } else {
+        searchResults = courseRepository.findAll();
+    }
+    
+    model.addAttribute("list", searchResults);
+    model.addAttribute("categories", categoryRepository.findAll());
+    model.addAttribute("keyword", keyword);
+    model.addAttribute("selectedCategory", category);
+    return "home/course";
+}
 
     @PostMapping("/admin/course/add")
     public String add(@ModelAttribute Course course) {
