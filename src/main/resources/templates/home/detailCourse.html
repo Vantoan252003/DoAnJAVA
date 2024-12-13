@@ -22,6 +22,8 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/image-container.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -85,8 +87,15 @@
                             <h3 class="text-primary" th:text="${course.title}"></h3>
                             <h4><span class="text-success" th:text="${course.price}"></span></h4>
                             <p><b>Thời lượng:</b> 4 Module</p>
-                            <b>Giảng viên :</b>
-                            <p th:text=" ${course.teacher.fullname}"></p>
+                            <div class="teacher-info">
+                                <b>Giảng viên:</b>
+                                <span th:if="${course != null && course.teacher != null}">
+                                    <p class="text-info" th:text="${course.teacher.fullname}"></p>
+                                </span>
+                                <span th:if="${course == null || course.teacher == null}">
+                                    <p class="text-muted">Chưa có giảng viên</p>
+                                </span>
+                            </div>
                             <p><b>Sở hữu khóa học:</b> Trọn đời</p>
                             <div class="row my-4">
                                 <div class="col-lg-5 text-right">
@@ -94,22 +103,24 @@
                                         <p th:text="${message}"></p>
                                     </div>
                                     <div sec:authorize="isAnonymous()">
-                                        <a href="/home/signin"><button class="btn btn-primary mx-2">Thêm vào giỏ</button></a>
+                                        <a href="/home/signin"><button class="btn btn-primary mx-2">Thêm vào
+                                                giỏ</button></a>
                                     </div>
                                     <div sec:authorize="isAuthenticated()">
                                         <!-- Dùng cú pháp đúng để Thymeleaf render ID khóa học -->
                                         <a th:href="@{/home/addToCart/{courseId}(courseId=${course.courseId})}">
                                             <button class="btn btn-primary mx-2">Thêm vào giỏ</button>
                                         </a>
-                                        
                                     </div>
                                 </div>
                                 <div class="col-lg-5 text-right">
                                     <div sec:authorize="isAnonymous()">
-                                        <a href="/home/signin"> <button class="btn btn-danger mx-2">Thanh toán ngay</button></a>
+                                        <a href="/home/signin"> <button class="btn btn-danger mx-2">Thanh toán
+                                                ngay</button></a>
                                     </div>
                                     <div sec:authorize="isAuthenticated()">
-                                        <a href="/home/checkout/{{course.id}}"> <button class="btn btn-danger mx-2">Thanh toán ngay</button></a>
+                                        <a href="/home/cart"> <button
+                                                class="btn btn-danger mx-2">Thanh toán ngay</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -238,7 +249,28 @@
     <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
-
+    <script>
+        function addToCart(courseId) {
+            fetch(`/home/addToCart/${courseId}`)
+                .then(response => response.text())
+                .then(message => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Thành công!',
+                        text: 'Đã thêm khóa học vào giỏ hàng',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+                .catch(error => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi!',
+                        text: 'Không thể thêm vào giỏ hàng'
+                    });
+                });
+        }
+    </script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>

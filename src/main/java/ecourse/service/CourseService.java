@@ -1,8 +1,10 @@
 package ecourse.service;
 import java.util.Base64;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import ecourse.model.Course;
 import ecourse.repository.CourseRepository;
@@ -33,4 +35,8 @@ public class CourseService {
         }
         courseRepository.save(course);
     }
+    public List<Course> getAllCoursesWithCategories() {
+        return courseRepository.findAllWithCategories(); 
+    }
+
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ecourse.model.Course;
+import ecourse.repository.CategoriesRepository;
 import ecourse.repository.CourseRepository;
 import ecourse.repository.LessonsRepository;
 import ecourse.repository.TeacherRepository;
@@ -28,16 +29,20 @@ public class CourseController {
     private TeacherRepository teacherRepository;
     @Autowired
     private LessonsRepository lessonsRepository;
+    @Autowired
+    private CategoriesRepository categoryRepository;
     @GetMapping("/admin/course")
-    public String index(Model model) {
-        model.addAttribute("list", courseRepository.findAll());
+    public String listCourses(Model model) {
+        List<Course> courses = courseService.getAllCoursesWithCategories();
+        model.addAttribute("list", courses);
         return "admin/course/index";
     }
 
     // Thêm dữ liệu
     @GetMapping("/admin/course/add")
     public String add(Model model) {
-        model.addAttribute("teacherList", teacherRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("teachers", teacherRepository.findAll());
         model.addAttribute("courseList", courseRepository.findAll());
         return "admin/course/add";
     }
@@ -53,6 +58,8 @@ public class CourseController {
     public String edit(@PathVariable("courseId") short courseId, Model model) {
         Course course = courseRepository.findById(courseId).orElse(null);
         model.addAttribute("course", course);
+        model.addAttribute("teachers", teacherRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll()); // Thêm dòng này
         return "admin/course/edit";
     }
 
