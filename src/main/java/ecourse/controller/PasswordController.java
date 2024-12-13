@@ -44,31 +44,32 @@ public class PasswordController {
 
             // Kiểm tra mật khẩu hiện tại có đúng không
             if (passwordEncoder.matches(currentPassword, user.getPassword())) {
+                logger.debug("Mật khẩu hiện tại đúng.");
                 if (newPassword.equals(currentPassword)) {
-                    logger.error("User '{}' attempted to change password but new password is the same as the current password.", username);
+                    logger.error("Mật khẩu mới giống mật khẩu hiện tại.");
                     model.addAttribute("errorMessage", "Mật khẩu mới không được giống mật khẩu hiện tại.");
                     return "home/changePassword";
                 }
-                // Kiểm tra mật khẩu mới và xác nhận mật khẩu mới có khớp không
                 if (newPassword.equals(confirmPassword)) {
-                    // Mã hóa mật khẩu mới và cập nhật vào cơ sở dữ liệu
                     user.setPassword(passwordEncoder.encode(newPassword));
                     userService.save(user);
-                    logger.info("User '{}' successfully changed their password.", username);
+                    logger.info("User '{}' thay đổi mật khẩu thành công.", username);
                     return "redirect:/home/profile"; // Quay lại trang profile sau khi đổi mật khẩu thành công
                 } else {
-                    logger.error("User '{}' attempted to change password, but new password and confirm password did not match.", username);
-                    return "redirect:/home/changePassword?error=passwordMismatch";
+                    logger.error("Mật khẩu mới và mật khẩu xác nhận không khớp.");
+                    model.addAttribute("errorMessage", "Mật khẩu mới và mật khẩu xác nhận không khớp.");
+                    return "home/changePassword";
                 }
             } else {
-                // Nếu mật khẩu hiện tại không đúng
-                logger.error("User '{}' attempted to change password but entered the wrong current password.", username);
-                return "redirect:/home/changePassword?error=invalidPassword";
+                logger.error("Mật khẩu hiện tại không đúng.");
+                model.addAttribute("errorMessage", "Mật khẩu hiện tại không đúng.");
+                return "home/changePassword";
             }
         } catch (Exception e) {
-            logger.error("An unexpected error occurred while user '{}' was changing password: {}", SecurityContextHolder.getContext().getAuthentication().getName(), e.getMessage());
+            logger.error("Đã xảy ra lỗi khi user '{}' thay đổi mật khẩu: {}", SecurityContextHolder.getContext().getAuthentication().getName(), e.getMessage());
             e.printStackTrace();
-            return "redirect:/home/changePassword?error=unknownError";
+            model.addAttribute("errorMessage", "Đã xảy ra lỗi không xác định.");
+            return "home/changePassword";
         }
     }
 }
