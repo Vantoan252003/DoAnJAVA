@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="/admin/layoutAdmin">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm thanh toán</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div layout:fragment="content">
+    <div class="container mt-5">
+        <h2>Thêm thanh toán mới</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            <!-- ID Đơn hàng -->
+            <div class="form-group">
+                <label for="orderId">ID đơn hàng</label>
+                <input type="number" class="form-control" id="orderId" name="orderId" required>
+            </div>
+
+            <!-- Số tiền -->
+            <div class="form-group">
+                <label for="amount">Số tiền</label>
+                <input type="number" class="form-control" id="amount" name="amount" step="0.01" required>
+            </div>
+
+            <!-- Ngày thanh toán -->
+            <div class="form-group">
+                <label for="paymentDate">Ngày thanh toán</label>
+                <input type="date" class="form-control" id="paymentDate" name="paymentDate" required>
+            </div>
+
+            <!-- Hình thức thanh toán -->
+            <div class="form-group">
+                <label for="paymentMethod">Hình thức thanh toán</label>
+                <select class="form-control" id="paymentMethod" name="paymentMethod" required>
+                    <option value="credit_card">Thẻ tín dụng</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="bank_transfer">Chuyển khoản ngân hàng</option>
+                    <option value="cash_on_delivery">Thanh toán khi nhận hàng</option>
+                </select>
+            </div>
+
+            <!-- Trạng thái thanh toán -->
+            <div class="form-group">
+                <label for="paymentStatus">Trạng thái thanh toán</label>
+                <select class="form-control" id="paymentStatus" name="paymentStatus" required>
+                    <option value="pending">Chờ xử lý</option>
+                    <option value="completed">Hoàn tất</option>
+                    <option value="failed">Thất bại</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-success">Lưu</button>
+            <a href="/admin/payments" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="/admin/layoutAdmin">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý thanh toán</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div layout:fragment="content">
+    <div class="container mt-5">
+        <h2>Quản lý thanh toán</h2>
+        <a href="/admin/payments/add" class="btn btn-success">Thêm thanh toán</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID thanh toán</th>
+                    <th>ID đơn hàng</th>
+                    <th>Ngày thanh toán</th>
+                    <th>Hình thức thanh toán</th>
+                    <th>Trạng thái</th>
+                    <th>Số tiền</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="o : ${list}">
+                    <td th:text="${o.paymentsId}"></td>
+                    <td th:text="${o.orderId}"></td>
+                    <td th:text="${o.paymentsDate}"></td>
+                    <td th:text="${o.paymentsMethod}"></td>
+                    <td th:text="${o.paymentsStatus}"></td>
+                    <td th:text="${o.amount}"></td>
+                    <td>
+                        <a th:href="@{/admin/payments/edit/{paymentsId}(paymentsId=${o.paymentsId})}" class="btn btn-primary btn-sm">Sửa</a>
+                        <a th:href="@{/admin/payments/delete/{paymentsId}(paymentsId=${o.paymentsId})}" class="btn btn-danger btn-sm" onclick="return confirm('Có chắc muốn xóa không ?')">Xóa</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
