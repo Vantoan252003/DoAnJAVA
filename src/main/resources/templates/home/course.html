@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" 
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="/home/layout">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="/home/layout">
+
 <head>
     <meta charset="utf-8">
     <title>ECOURSES - Online Courses HTML Template</title>
@@ -26,23 +25,96 @@
 </head>
 
 <body>
-    
+
     <div layout:fragment="content">
-    <!-- Header Start -->
-    <div class="container-fluid page-header" style="margin-bottom: 90px;">
-        <div class="container">
-            <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
-                <h3 class="display-4 text-white text-uppercase">Courses</h3>
-                <div class="d-inline-flex text-white">
-                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
-                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                    <p class="m-0 text-uppercase">Courses</p>
+        <!-- Header Start -->
+        <div class="container-fluid page-header" style="margin-bottom: 90px;">
+            <div class="container">
+                <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
+                    <h3 class="display-4 text-white text-uppercase">Courses</h3>
+                    <div class="d-inline-flex text-white">
+                        <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                        <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                        <p class="m-0 text-uppercase">Courses</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Header End -->
+        <!-- Header End -->
+        <div class="container-fluid py-3">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <form th:action="@{/home/course/search}" method="GET" class="mb-5">
+                            <div class="input-group">
+                                <input type="text" 
+                                       name="keyword" 
+                                       class="form-control form-control-lg" 
+                                       placeholder="Tìm kiếm khóa học..."
+                                       th:value="${keyword}">
+                                <select name="category" class="custom-select" style="max-width: 200px;">
+                                    <option value="">Tất cả thể loại</option>
+                                    <option th:each="cat : ${categories}" 
+                                            th:value="${cat.categoryId}"
+                                            th:text="${cat.categoryName}"
+                                            th:selected="${cat.categoryId == selectedCategory}">
+                                    </option>
+                                </select>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary px-4" type="submit">
+                                        <i class="fas fa-search mr-2"></i>Tìm kiếm
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+
+
+        <!-- Courses Start -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5">
+                    <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">KHÓA HỌC</h5>
+                    <h1>Các khóa bán chạy</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4" th:each="o :${list}">
+                        <div class="rounded overflow-hidden mb-2">
+                            <div class="image-container">
+                                <img class="img-fluid" th:src="'data:image/jpeg;base64,' + ${o.image_url}"
+                                    alt="ảnh lỗi">
+                            </div>
+                            <div class="bg-secondary p-4">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 Học viên</small>
+                                    <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
+                                </div>
+                                <div class="cat-item position-relative overflow-hidden rounded mb-2">
+                                    <a class=" text-decoration-none"
+                                        th:href="@{/home/detailCourse/{courseId}(courseId=${o.courseId})}">
+                                        <h5 th:text="${o.title}"></h5>
+                                    </a>
+                                </div>
+                                <div class="border-top mt-4 pt-4">
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5
+                                            <small>(250)</small></h6>
+                                        <h5 class="m-0" th:text="${o.price} +'VND'"></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Courses End -->
 
     <!-- Category Start -->
     <div class="container-fluid py-5">
@@ -130,45 +202,7 @@
     <!-- Category Start -->
 
 
-    <!-- Courses Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">KHÓA HỌC</h5>
-                <h1>Các khóa bán chạy</h1>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4" th:each="o :${list}">
-                    <div class="rounded overflow-hidden mb-2">
-                        <div class="image-container">
-                            <img class="img-fluid" th:src="'data:image/jpeg;base64,' + ${o.image_url}" alt="ảnh lỗi">
-                        </div>
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>25 Học viên</small>
-                                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
-                            </div>
-                            <div class="cat-item position-relative overflow-hidden rounded mb-2">
-                            <a class=" text-decoration-none" th:href="@{/home/detailCourse/{courseId}(courseId=${o.courseId})}"><h5  th:text="${o.title}"></h5></a>
-                            </div>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small></h6>
-                                    <h5 class="m-0" th:text="${o.price} +'$'"></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</div>
-    <!-- Courses End -->
 
-
-    
 
 
     <!-- Back to Top -->

@@ -245,32 +245,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
     <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
-    <script>
-        function addToCart(courseId) {
-            fetch(`/home/addToCart/${courseId}`)
-                .then(response => response.text())
-                .then(message => {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Thành công!',
-                        text: 'Đã thêm khóa học vào giỏ hàng',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                })
-                .catch(error => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Lỗi!',
-                        text: 'Không thể thêm vào giỏ hàng'
-                    });
-                });
-        }
-    </script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>

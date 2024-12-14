@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import ecourse.model.UserClass;
+import ecourse.repository.CategoriesRepository;
 import ecourse.repository.CourseRepository;
 import ecourse.repository.TeacherRepository;
 import ecourse.service.UserInterface;
@@ -23,10 +24,13 @@ public class LayoutController {
     private UserInterface userService;
     @Autowired
     private TeacherRepository teacherRepository;
-
+    @Autowired 
+    private CategoriesRepository categoryRepository;
     @GetMapping("/home/course")
+  
     public String course(Model model) {
         model.addAttribute("list", courseRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "home/course";
     }
 

@@ -122,29 +122,30 @@
                                 </div>
                             </div>
                             <a href="/home/contact" class="nav-item nav-link">Liên hệ</a>
-                        </div>
-                        <div>
-                            <div sec:authorize="isAnonymous()">
-                                <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="/home/signin">Đăng
-                                    nhập</a>
+                            <div sec:authorize="isAuthenticated()" class="nav-item">
+                                <a href="/home/learn" class="nav-link">
+                                    <i class="fas fa-graduation-cap mr-1"></i>Vào học
+                                </a>
                             </div>
-                            <div sec:authorize="isAuthenticated()">
-                                <div class="dropdown d-flex align-items-center">
-                                    <!-- Avatar -->
-                                    <a class="px-4" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img class="rounded-circle" style="width: 50px; height: 50px;"
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div sec:authorize="isAnonymous()">
+                                <a class="btn btn-primary py-2 px-4" href="/home/signin">Đăng nhập</a>
+                            </div>
+                            <div sec:authorize="isAuthenticated()" class="d-flex align-items-center">
+                                <!-- Giỏ hàng -->
+                                <a class="nav-link position-relative" href="/home/cart">
+                                    <i class="fa fa-shopping-cart fa-lg"></i>
+                                </a>
+                                
+                                <!-- Avatar & Dropdown -->
+                                <div class="dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle p-0" id="userDropdown" role="button" data-toggle="dropdown">
+                                        <img class="rounded-circle" style="width: 40px; height: 40px;"
                                             th:src="'data:image/jpeg;base64,' + ${#authentication.principal.imageUrl}"
                                             alt="Ảnh người dùng">
                                     </a>
-                                    
-                                    <!-- Giỏ hàng -->
-                                    <a class="ml-2" href="/home/cart">
-                                        <i class="fa fa-2x fa-shopping-cart"></i>
-                                    </a>
-                            
-                                    <!-- Dropdown menu -->
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                        aria-labelledby="userDropdown">
+                                    <div class="dropdown-menu dropdown-menu-right shadow">
                                         <a class="dropdown-item" href="/home/profile">
                                             <i class="fa fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                             Thông tin

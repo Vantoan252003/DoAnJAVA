@@ -39,15 +39,6 @@ public class OrderController {
         }
     }
 
-    @ResponseBody // Add this annotation
-    public ResponseEntity<String> addToCart(@PathVariable(name = "courseId") Short courseId) {
-        try {
-            orderService.addToCart(courseId);
-            return ResponseEntity.ok("Khóa học đã thêm thành công!");
-        } catch (IllegalStateException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
 
     @GetMapping("/admin/approve/{orderId}")
     public ResponseEntity<String> approveOrder(@PathVariable("orderId") Short orderId) {
