@@ -48,7 +48,7 @@ public class CourseController {
         return "admin/course/add";
     }
     @GetMapping("/home/course/search")
-public String searchCourses(@RequestParam(required = false) String keyword,
+    public String searchCourses(@RequestParam(required = false) String keyword,
                           @RequestParam(required = false) Integer category,
                           Model model) {
     List<Course> searchResults;
